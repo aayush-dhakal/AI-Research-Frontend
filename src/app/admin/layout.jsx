@@ -3,7 +3,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import styles from "./admin.module.css";
 import AuthorState from "@/context/author/AuthorState";
 
 export default function AdminLayout({ children }) {
@@ -29,7 +28,7 @@ export default function AdminLayout({ children }) {
   }
 
   return (
-    <main className={styles.adminContainer}>
+    <main className="container m-5">
       <AuthorState>{children}</AuthorState>
     </main>
   );

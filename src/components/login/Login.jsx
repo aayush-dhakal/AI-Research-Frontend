@@ -72,25 +72,22 @@ const Login = () => {
           </Form.Item>
         </Form.Item>
 
-        <Form.Item label="Password">
-          <Form.Item
-            name="password"
-            noStyle
-            rules={[
-              {
-                required: true,
-                message: "Password is required",
-              },
-            ]}
-          >
-            <Input
-              style={{
-                width: 260,
-              }}
-              type="password"
-              placeholder="Please enter your password"
-            />
-          </Form.Item>
+        <Form.Item
+          label="Password"
+          name="password"
+          rules={[
+            {
+              required: true,
+              message: "Password is required",
+            },
+          ]}
+        >
+          <Input.Password
+            placeholder="Enter password"
+            style={{
+              width: 260,
+            }}
+          />
         </Form.Item>
 
         <Form.Item label=" " colon={false}>

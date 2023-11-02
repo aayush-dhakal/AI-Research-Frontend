@@ -1,4 +1,4 @@
-import { Tag } from "antd";
+import { Image, Tag } from "antd";
 
 export const auhtorColumns = [
   {
@@ -6,17 +6,17 @@ export const auhtorColumns = [
     dataIndex: "name",
     key: "name",
   },
-  {
-    title: "Topic",
-    dataIndex: "topic",
-    key: "topic",
-    render: (_, { topic }) =>
-      topic.map((singleTopic) => (
-        <Tag color="green" key={singleTopic}>
-          {singleTopic}
-        </Tag>
-      )),
-  },
+  // {
+  //   title: "Topic",
+  //   dataIndex: "topic",
+  //   key: "topic",
+  //   render: (_, { topic }) =>
+  //     topic.map((singleTopic) => (
+  //       <Tag color="green" key={singleTopic}>
+  //         {singleTopic}
+  //       </Tag>
+  //     )),
+  // },
   {
     title: "Description",
     dataIndex: "description",
@@ -26,6 +26,7 @@ export const auhtorColumns = [
     title: "Image",
     dataIndex: "image",
     key: "image",
+    render: (_, { image }) => <Image src={image} width={50} />,
   },
   {
     title: "Facebook",
