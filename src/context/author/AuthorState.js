@@ -8,8 +8,6 @@ import {
   UPDATE_AUTHOR,
   AUTHOR_ERROR,
   SET_CURRENT_AUTHOR,
-  CLEAR_CURRENT_AUTHOR,
-  CLEAR_AUTHORS,
 } from "../types";
 import api from "../../utils/api";
 import { toast } from "react-toastify";
@@ -52,16 +50,12 @@ const AuthorState = (props) => {
 
   // update author
   const updateAuthor = async (author) => {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
     try {
-      const res = await api.put(`/author/${author._id}`, author, config);
+      const res = await api.put(`/author/${author.id}`, author, {
+        withCredentials: true, // this is absolutely essential to set the cookie in browser
+      });
 
-      dispatch({ type: UPDATE_AUTHOR, payload: res.data });
+      dispatch({ type: UPDATE_AUTHOR, payload: res.data?.data });
     } catch (err) {
       dispatch({ type: AUTHOR_ERROR, payload: "API Error" });
     }
@@ -82,20 +76,10 @@ const AuthorState = (props) => {
     }
   };
 
-  // // Clear Authors
-  // const clearAuthors = () => {
-  //   dispatch({ type: CLEAR_AUTHORS });
-  // };
-
-  // // set current contact
-  // const setCurrentAuthor = (contact) => {
-  //   dispatch({ type: SET_CURRENT_AUTHOR, payload: contact });
-  // };
-
-  // // clear current contact
-  // const clearCurrent = () => {
-  //   dispatch({ type: CLEAR_CURRENT });
-  // };
+  // set current author for edit
+  const setCurrentAuthor = (author) => {
+    dispatch({ type: SET_CURRENT_AUTHOR, payload: author });
+  };
 
   return (
     <AuthorContext.Provider
@@ -107,11 +91,7 @@ const AuthorState = (props) => {
         addAuthor,
         updateAuthor,
         deleteAuthor,
-        // setCurrent,
-        // clearCurrent,
-        // filterContacts,
-        // clearFilter,
-        // clearContacts,
+        setCurrentAuthor,
       }}
     >
       {props.children}

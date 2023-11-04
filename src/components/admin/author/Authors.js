@@ -1,19 +1,28 @@
 "use client";
 
-import AuthorContext from "@/context/author/AuthorContext";
-import { getAuthorColumns } from "@/utils/table/authorColumns";
-import { Button, Table } from "antd";
 import Link from "next/link";
 import React, { useContext, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { Button, Table } from "antd";
+import AuthorContext from "@/context/author/AuthorContext";
+import { getAuthorColumns } from "@/utils/table/authorColumns";
 
 const Authors = () => {
-  const { authors, getAuthors, deleteAuthor } = useContext(AuthorContext);
+  const router = useRouter();
+
+  const { authors, getAuthors, deleteAuthor, setCurrentAuthor } =
+    useContext(AuthorContext);
 
   const handleDeleteAuthor = (id) => {
     deleteAuthor(id);
   };
 
-  const authorColumns = getAuthorColumns(handleDeleteAuthor);
+  const handleEditAuthor = (author) => {
+    setCurrentAuthor(author);
+    router.push("/admin/authors/edit");
+  };
+
+  const authorColumns = getAuthorColumns(handleDeleteAuthor, handleEditAuthor);
 
   useEffect(() => {
     getAuthors();

@@ -4,6 +4,7 @@ import {
   DELETE_AUTHOR,
   UPDATE_AUTHOR,
   AUTHOR_ERROR,
+  SET_CURRENT_AUTHOR,
 } from "../types";
 
 export default (state, action) => {
@@ -38,6 +39,12 @@ export default (state, action) => {
           (author) => author._id !== action.payload
         ),
         loading: false,
+      };
+
+    case SET_CURRENT_AUTHOR:
+      return {
+        ...state,
+        currentAuthor: action.payload,
       };
 
     case AUTHOR_ERROR:

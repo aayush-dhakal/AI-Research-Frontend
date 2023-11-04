@@ -1,7 +1,7 @@
-import { DeleteOutlined } from "@ant-design/icons";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Image, Tag } from "antd";
 
-export const getAuthorColumns = (handleDeleteAuthor) => {
+export const getAuthorColumns = (handleDeleteAuthor, handleEditAuthor) => {
   return [
     {
       title: "Name",
@@ -44,6 +44,16 @@ export const getAuthorColumns = (handleDeleteAuthor) => {
       title: "Instagram",
       dataIndex: "instagram",
       key: "instagram",
+    },
+    {
+      title: "Edit",
+      dataIndex: "_id",
+      key: "edit",
+      render: (_, author) => (
+        <div role="button" onClick={() => handleEditAuthor(author)}>
+          <EditOutlined />
+        </div>
+      ),
     },
     {
       title: "Delete",

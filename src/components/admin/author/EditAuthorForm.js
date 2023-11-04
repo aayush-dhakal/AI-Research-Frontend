@@ -7,12 +7,16 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import AuthorContext from "@/context/author/AuthorContext";
 
-const AuthorForm = () => {
+const EditAuthorForm = () => {
   const router = useRouter();
 
-  const { addAuthor } = useContext(AuthorContext);
+  const { currentAuthor, updateAuthor } = useContext(AuthorContext);
 
-  const [authorImage, setAuthorImage] = useState(null); // set value from props for update component
+  if (!currentAuthor) router.push("/admin/authors");
+
+  console.log("currentAuthor...", currentAuthor);
+
+  const [authorImage, setAuthorImage] = useState(currentAuthor?.image ?? null); // set value from props for update component
 
   const onImageUpload = (result) => {
     if (!result) {
@@ -25,7 +29,7 @@ const AuthorForm = () => {
   };
 
   const onFinish = async (values) => {
-    addAuthor({ ...values, image: authorImage });
+    updateAuthor({ id: currentAuthor?._id, image: authorImage, ...values });
     router.push("/admin/authors");
   };
 
@@ -36,7 +40,7 @@ const AuthorForm = () => {
   return (
     <div>
       <div className="mb-4 d-flex justify-content-around">
-        <h3 className="text-info ">Add an author</h3>
+        <h3 className="text-info ">Edit the author</h3>
         <div>
           <Link href="/admin">
             <Button type="primary">Go back to admin</Button>
@@ -54,10 +58,13 @@ const AuthorForm = () => {
         style={{
           maxWidth: 600,
         }}
-        // initialValues={{
-        //   name: "aayush",
-        //   description: "this is sample",
-        // }}
+        initialValues={{
+          name: currentAuthor?.name,
+          description: currentAuthor?.description,
+          facebook: currentAuthor?.facebook,
+          twitter: currentAuthor?.twitter,
+          instagram: currentAuthor?.instagram,
+        }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
@@ -136,7 +143,7 @@ const AuthorForm = () => {
           }}
         >
           <Button type="primary" htmlType="submit">
-            Submit
+            Update
           </Button>
         </Form.Item>
       </Form>
@@ -144,4 +151,4 @@ const AuthorForm = () => {
   );
 };
 
-export default AuthorForm;
+export default EditAuthorForm;
