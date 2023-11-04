@@ -12,10 +12,11 @@ import {
   CLEAR_AUTHORS,
 } from "../types";
 import api from "../../utils/api";
+import { toast } from "react-toastify";
 
 const AuthorState = (props) => {
   const initialState = {
-    authors: null,
+    authors: [],
     currentAuthor: null,
     error: null,
   };
@@ -27,7 +28,7 @@ const AuthorState = (props) => {
     try {
       const res = await api.get("/author");
 
-      dispatch({ type: GET_AUTHORS, payload: res.data });
+      dispatch({ type: GET_AUTHORS, payload: res.data?.data });
     } catch (err) {
       // console.error(err)
       dispatch({ type: AUTHOR_ERROR, payload: "API Error" });
@@ -36,19 +37,16 @@ const AuthorState = (props) => {
 
   // add author
   const addAuthor = async (author) => {
-    // if we are sending data then we need this header
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
     try {
-      const res = await api.post("/author", author, config);
+      const res = await api.post("/author", author, {
+        withCredentials: true, // this is absolutely essential to set the cookie in browser
+      });
 
-      dispatch({ type: ADD_AUTHOR, payload: res.data });
+      dispatch({ type: ADD_AUTHOR, payload: res.data?.data });
+      toast.success("Author added");
     } catch (err) {
       dispatch({ type: AUTHOR_ERROR, payload: "API Error" });
+      toast.error("Error adding the author", err);
     }
   };
 
@@ -72,11 +70,15 @@ const AuthorState = (props) => {
   // delete author
   const deleteAuthor = async (id) => {
     try {
-      await api.delete(`api/author/${id}`);
+      await api.delete(`/author/${id}`, {
+        withCredentials: true, // this is absolutely essential to set the cookie in browser
+      });
 
       dispatch({ type: DELETE_AUTHOR, payload: id });
+      toast.success("Author deleted");
     } catch (err) {
       dispatch({ type: AUTHOR_ERROR, payload: "API Error" });
+      toast.error("Error deleting the author", err);
     }
   };
 

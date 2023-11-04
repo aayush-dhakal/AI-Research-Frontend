@@ -25,16 +25,22 @@ export default (state, action) => {
     case UPDATE_POST:
       return {
         ...state,
-        posts: state.posts.map((contact) =>
-          contact._id === action.payload._id ? action.payload : contact
+        posts: state.posts.map((post) =>
+          post._id === action.payload._id ? action.payload : post
         ),
         loading: false,
       };
 
     case DELETE_POST:
+      console.log("Before deleting post:", state.posts);
+      const updatedPosts = state.posts.filter(
+        (post) => post._id !== action.payload
+      );
+      console.log("After deleting post:", updatedPosts);
       return {
         ...state,
-        posts: state.posts.filter((contact) => contact._id !== action.payload),
+        // posts: state.posts.filter((post) => post._id !== action.payload),
+        posts: updatedPosts,
         loading: false,
       };
 

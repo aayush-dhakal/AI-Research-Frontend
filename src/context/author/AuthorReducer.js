@@ -25,8 +25,8 @@ export default (state, action) => {
     case UPDATE_AUTHOR:
       return {
         ...state,
-        authors: state.authors.map((contact) =>
-          contact._id === action.payload._id ? action.payload : contact
+        authors: state.authors.map((author) =>
+          author._id === action.payload._id ? action.payload : author
         ),
         loading: false,
       };
@@ -35,7 +35,7 @@ export default (state, action) => {
       return {
         ...state,
         authors: state.authors.filter(
-          (contact) => contact._id !== action.payload
+          (author) => author._id !== action.payload
         ),
         loading: false,
       };

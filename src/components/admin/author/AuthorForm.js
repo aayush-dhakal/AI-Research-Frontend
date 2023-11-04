@@ -1,37 +1,19 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Form, Image, Input } from "antd";
 import { CldUploadWidget } from "next-cloudinary";
 import { toast } from "react-toastify";
 import api from "@/utils/api";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import AuthorContext from "@/context/author/AuthorContext";
 
 const AuthorForm = () => {
   const router = useRouter();
 
+  const { addAuthor } = useContext(AuthorContext);
+
   const [authorImage, setAuthorImage] = useState(null); // set value from props for update component
-
-  const onFinish = async (values) => {
-    console.log("Success:", values);
-    try {
-      const res = await api.post(
-        "/author",
-        { ...values, image: authorImage },
-        {
-          withCredentials: true, // this is absolutely essential to set the cookie in browser
-        }
-      );
-      router.push("/admin/authors");
-      toast.success("Author added");
-    } catch (error) {
-      toast.error("Error adding the author", error);
-    }
-  };
-
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-    toast.error("User was not added", errorInfo);
-  };
 
   const onImageUpload = (result) => {
     if (!result) {
@@ -43,9 +25,25 @@ const AuthorForm = () => {
     toast.success("Image uploaded");
   };
 
+  const onFinish = async (values) => {
+    addAuthor({ ...values, image: authorImage });
+    router.push("/admin/authors");
+  };
+
+  const onFinishFailed = (errorInfo) => {
+    console.error("Failed:", errorInfo);
+  };
+
   return (
     <div>
-      <h3 className="mb-2 text-info text-center mb-4">Add an author</h3>
+      <div className="mb-4 d-flex justify-content-around">
+        <h3 className="text-info ">Add an author</h3>
+        <div>
+          <Link href="/admin">
+            <Button type="primary">Go back to admin</Button>
+          </Link>
+        </div>
+      </div>
       <Form
         name="basic"
         labelCol={{

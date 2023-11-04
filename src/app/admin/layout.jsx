@@ -4,6 +4,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import AuthorState from "@/context/author/AuthorState";
+import PostState from "@/context/post/PostState";
 
 export default function AdminLayout({ children }) {
   const [isSuccess, setIsSuccess] = useState(false);
@@ -29,7 +30,9 @@ export default function AdminLayout({ children }) {
 
   return (
     <main className="container m-5">
-      <AuthorState>{children}</AuthorState>
+      <AuthorState>
+        <PostState>{children}</PostState>
+      </AuthorState>
     </main>
   );
 }
