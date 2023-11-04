@@ -4,6 +4,7 @@ import {
   DELETE_POST,
   UPDATE_POST,
   POST_ERROR,
+  SET_CURRENT_POST,
 } from "../types";
 
 export default (state, action) => {
@@ -42,6 +43,12 @@ export default (state, action) => {
         // posts: state.posts.filter((post) => post._id !== action.payload),
         posts: updatedPosts,
         loading: false,
+      };
+
+    case SET_CURRENT_POST:
+      return {
+        ...state,
+        currentPost: action.payload,
       };
 
     case POST_ERROR:

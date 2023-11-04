@@ -3,7 +3,6 @@ import React, { useState, useRef, useMemo, useContext, useEffect } from "react";
 import { Button, Form, Image, Input, Select } from "antd";
 import { CldUploadWidget } from "next-cloudinary";
 import { toast } from "react-toastify";
-import api from "@/utils/api";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import JoditEditor from "jodit-react";
@@ -11,17 +10,17 @@ import { AI_Research_Topics, getAuthorOptions } from "@/utils/helpers";
 import AuthorContext from "@/context/author/AuthorContext";
 import PostContext from "@/context/post/PostContext";
 
-const PostForm = () => {
+const EditPostForm = () => {
   const router = useRouter();
 
-  const { addPost } = useContext(PostContext);
+  const { currentPost, updatePost, setCurrentPost } = useContext(PostContext);
 
-  const [postImage, setPostImage] = useState(null); // set value from props for update component
-  const [topics, setTopics] = useState([]);
-  const [author, setAuthor] = useState(null);
+  const [coverImage, setCoverImage] = useState(currentPost?.coverImage ?? null);
+  const [topics, setTopics] = useState(currentPost?.topics ?? []);
+  const [author, setAuthor] = useState(currentPost?.author?._id ?? null);
 
   const editor = useRef(null);
-  const [content, setContent] = useState("");
+  const [content, setContent] = useState(currentPost?.description ?? "");
 
   const { authors, getAuthors } = useContext(AuthorContext);
 
@@ -40,7 +39,7 @@ const PostForm = () => {
       return;
     }
 
-    setPostImage(result?.info?.secure_url);
+    setCoverImage(result?.info?.secure_url);
     toast.success("Image uploaded");
   };
 
@@ -57,19 +56,21 @@ const PostForm = () => {
       toast.error("Fill all the fields");
       return;
     }
-    if (!postImage) {
+    if (!coverImage) {
       toast.error("Please upload the image");
       return;
     }
 
-    addPost({
+    updatePost({
+      id: currentPost?._id,
       ...values,
       description: content,
       topics,
       author,
-      coverImage: postImage,
+      coverImage,
     });
     router.push("/admin/posts");
+    setCurrentPost(null);
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -83,7 +84,7 @@ const PostForm = () => {
   return (
     <div>
       <div className="mb-4 d-flex justify-content-around">
-        <h3 className="text-info ">Add a post</h3>
+        <h3 className="text-info ">Edit the post</h3>
         <div>
           <Link href="/admin">
             <Button type="primary">Go back to admin</Button>
@@ -101,10 +102,9 @@ const PostForm = () => {
         style={{
           maxWidth: 900,
         }}
-        // initialValues={{
-        //   name: "aayush",
-        //   description: "this is sample",
-        // }}
+        initialValues={{
+          title: currentPost?.title,
+        }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
@@ -139,9 +139,9 @@ const PostForm = () => {
               );
             }}
           </CldUploadWidget>
-          {postImage && (
+          {coverImage && (
             <div className="mt-4">
-              <Image width={200} src={postImage} />
+              <Image width={200} src={coverImage} />
             </div>
           )}
         </Form.Item>
@@ -157,6 +157,7 @@ const PostForm = () => {
             placeholder="Please select the topic"
             onChange={handleTopicChange} // select is not part of ant design form so we have to manually handle the onChange or else its value will not be reflected after hitting submit button.
             options={AI_Research_Topics}
+            defaultValue={topics}
           />
         </Form.Item>
 
@@ -175,6 +176,7 @@ const PostForm = () => {
             optionFilterProp="children"
             options={authorOptions}
             onChange={handleAuthorChange}
+            defaultValue={author}
           />
         </Form.Item>
 
@@ -202,7 +204,7 @@ const PostForm = () => {
           }}
         >
           <Button type="primary" htmlType="submit">
-            Submit
+            Update
           </Button>
         </Form.Item>
       </Form>
@@ -210,4 +212,4 @@ const PostForm = () => {
   );
 };
 
-export default PostForm;
+export default EditPostForm;

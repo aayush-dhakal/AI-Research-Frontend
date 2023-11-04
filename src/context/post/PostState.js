@@ -8,8 +8,6 @@ import {
   UPDATE_POST,
   POST_ERROR,
   SET_CURRENT_POST,
-  CLEAR_CURRENT_POST,
-  CLEAR_POSTS,
 } from "../types";
 import api from "../../utils/api";
 import { toast } from "react-toastify";
@@ -52,18 +50,16 @@ const PostState = (props) => {
 
   // update post
   const updatePost = async (post) => {
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
-
     try {
-      const res = await api.put(`/post/${post._id}`, post, config);
+      const res = await api.put(`/post/${post.id}`, post, {
+        withCredentials: true, // this is absolutely essential to set the cookie in browser
+      });
 
       dispatch({ type: UPDATE_POST, payload: res.data?.data });
+      toast.success("Post updated");
     } catch (err) {
       dispatch({ type: POST_ERROR, payload: "API Error" });
+      toast.error("Error updating the post", err);
     }
   };
 
@@ -82,20 +78,10 @@ const PostState = (props) => {
     }
   };
 
-  // // Clear Posts
-  // const clearPosts = () => {
-  //   dispatch({ type: CLEAR_POSTS });
-  // };
-
-  // // set current contact
-  // const setCurrentPost = (contact) => {
-  //   dispatch({ type: SET_CURRENT_POST, payload: contact });
-  // };
-
-  // // clear current contact
-  // const clearCurrent = () => {
-  //   dispatch({ type: CLEAR_CURRENT });
-  // };
+  // set current post
+  const setCurrentPost = (post) => {
+    dispatch({ type: SET_CURRENT_POST, payload: post });
+  };
 
   return (
     <PostContext.Provider
@@ -107,11 +93,7 @@ const PostState = (props) => {
         addPost,
         updatePost,
         deletePost,
-        // setCurrent,
-        // clearCurrent,
-        // filterContacts,
-        // clearFilter,
-        // clearContacts,
+        setCurrentPost,
       }}
     >
       {props.children}

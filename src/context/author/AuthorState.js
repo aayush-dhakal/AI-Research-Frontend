@@ -56,8 +56,10 @@ const AuthorState = (props) => {
       });
 
       dispatch({ type: UPDATE_AUTHOR, payload: res.data?.data });
+      toast.success("Author updated");
     } catch (err) {
       dispatch({ type: AUTHOR_ERROR, payload: "API Error" });
+      toast.error("Error updating the author", err);
     }
   };
 

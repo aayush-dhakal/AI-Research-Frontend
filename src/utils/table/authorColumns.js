@@ -1,5 +1,5 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
-import { Image, Tag } from "antd";
+import { Image } from "antd";
 
 export const getAuthorColumns = (handleDeleteAuthor, handleEditAuthor) => {
   return [
@@ -8,17 +8,6 @@ export const getAuthorColumns = (handleDeleteAuthor, handleEditAuthor) => {
       dataIndex: "name",
       key: "name",
     },
-    // {
-    //   title: "Topic",
-    //   dataIndex: "topic",
-    //   key: "topic",
-    //   render: (_, { topic }) =>
-    //     topic.map((singleTopic) => (
-    //       <Tag color="green" key={singleTopic}>
-    //         {singleTopic}
-    //       </Tag>
-    //     )),
-    // },
     {
       title: "Description",
       dataIndex: "description",

@@ -2,18 +2,26 @@
 import React, { useContext, useEffect } from "react";
 import { Button, Table } from "antd";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import PostContext from "@/context/post/PostContext";
 import { getPostColumns } from "@/utils/table/postColumns";
-import axios from "axios";
 
 const Posts = () => {
-  const { posts, getPosts, deletePost } = useContext(PostContext);
+  const router = useRouter();
+
+  const { posts, getPosts, deletePost, setCurrentPost } =
+    useContext(PostContext);
 
   const handleDeletePost = (id) => {
     deletePost(id);
   };
 
-  const postColumns = getPostColumns(handleDeletePost);
+  const handleEditAuthor = (post) => {
+    setCurrentPost(post);
+    router.push("/admin/posts/edit");
+  };
+
+  const postColumns = getPostColumns(handleDeletePost, handleEditAuthor);
 
   useEffect(() => {
     getPosts();

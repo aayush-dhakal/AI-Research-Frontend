@@ -1,8 +1,8 @@
 "use client";
 import { Image, Tag } from "antd";
-import { DeleteOutlined } from "@ant-design/icons";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
-export const getPostColumns = (handleDeletePost) => {
+export const getPostColumns = (handleDeletePost, handleEditAuthor) => {
   return [
     {
       title: "Title",
@@ -31,6 +31,16 @@ export const getPostColumns = (handleDeletePost) => {
       dataIndex: "author",
       key: "authorName",
       render: (_, { author }) => author.name,
+    },
+    {
+      title: "Edit",
+      dataIndex: "_id",
+      key: "edit",
+      render: (_, post) => (
+        <div role="button" onClick={() => handleEditAuthor(post)}>
+          <EditOutlined />
+        </div>
+      ),
     },
     {
       title: "Delete",

@@ -1,3 +1,4 @@
+import Logout from "@/components/admin/Logout";
 import { Button } from "antd";
 import Link from "next/link";
 
@@ -13,6 +14,9 @@ const admin = () => {
         <Link href="/admin/posts">
           <Button type="primary">Posts</Button>
         </Link>
+      </div>
+      <div className="mt-3">
+        <Logout />
       </div>
     </>
   );

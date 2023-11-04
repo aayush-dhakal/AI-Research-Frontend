@@ -10,7 +10,8 @@ import AuthorContext from "@/context/author/AuthorContext";
 const EditAuthorForm = () => {
   const router = useRouter();
 
-  const { currentAuthor, updateAuthor } = useContext(AuthorContext);
+  const { currentAuthor, updateAuthor, setCurrentAuthor } =
+    useContext(AuthorContext);
 
   if (!currentAuthor) router.push("/admin/authors");
 
@@ -31,6 +32,7 @@ const EditAuthorForm = () => {
   const onFinish = async (values) => {
     updateAuthor({ id: currentAuthor?._id, image: authorImage, ...values });
     router.push("/admin/authors");
+    setCurrentAuthor(null);
   };
 
   const onFinishFailed = (errorInfo) => {
