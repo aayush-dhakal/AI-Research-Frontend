@@ -20,6 +20,11 @@ export default function AdminLayout({ children }) {
         return;
       }
 
+      if (user.role !== "admin") {
+        router.push("");
+        return;
+      }
+
       setIsSuccess(true);
     })();
   });

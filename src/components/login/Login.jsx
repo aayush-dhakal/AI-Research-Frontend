@@ -22,12 +22,20 @@ const Login = () => {
     }
   };
 
+  const handleSignup = () => {
+    router.push("signup");
+  };
+
   useEffect(() => {
     (async () => {
       const { user } = await getUser();
 
       if (user) {
-        router.push("/admin");
+        if (user.role === "admin") {
+          router.push("/admin");
+        } else {
+          router.push("/login");
+        }
         return;
       }
     })();
@@ -94,6 +102,15 @@ const Login = () => {
           <Button type="primary" htmlType="submit">
             Login
           </Button>
+
+          <div className="mt-3">
+            {/* <Button type="link" className="ml-0 p-0">
+              Signup
+            </Button> */}
+            <Button className="text-success" onClick={handleSignup}>
+              Signup
+            </Button>
+          </div>
         </Form.Item>
       </Form>
     </>
