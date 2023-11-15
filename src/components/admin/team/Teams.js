@@ -39,9 +39,6 @@ const Teams = () => {
           </Link>
         </div>
         <h3 className="mb-2 text-info">Teams</h3>
-        {/* <Link href="/admin/teams/add">
-          <Button type="primary">Add Team</Button>
-        </Link> */}
       </div>
       <Table dataSource={teams} columns={teamColumns} />
     </div>
