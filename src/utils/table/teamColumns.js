@@ -1,7 +1,7 @@
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import { Image } from "antd";
 
-export const getAuthorColumns = (handleDeleteAuthor, handleEditAuthor) => {
+export const getTeamColumns = (handleDeleteTeam, handleEditTeam) => {
   return [
     {
       title: "Name",
@@ -14,32 +14,37 @@ export const getAuthorColumns = (handleDeleteAuthor, handleEditAuthor) => {
       key: "description",
     },
     {
+      title: "Role",
+      dataIndex: "role",
+      key: "role",
+    },
+    {
       title: "Image",
       dataIndex: "image",
       key: "image",
       render: (_, { image }) => <Image src={image} width={50} />,
     },
     {
-      title: "Facebook",
-      dataIndex: "facebook",
-      key: "facebook",
+      title: "Google Scholar",
+      dataIndex: "googleScholar",
+      key: "googleScholar",
     },
     {
-      title: "Twitter",
-      dataIndex: "twitter",
-      key: "twitter",
+      title: "LinkedIn",
+      dataIndex: "linkedIn",
+      key: "linkedIn",
     },
     {
-      title: "Instagram",
-      dataIndex: "instagram",
-      key: "instagram",
+      title: "ORCID",
+      dataIndex: "ORCID",
+      key: "ORCID",
     },
     {
       title: "Edit",
       dataIndex: "_id",
       key: "edit",
-      render: (_, author) => (
-        <div role="button" onClick={() => handleEditAuthor(author)}>
+      render: (_, team) => (
+        <div role="button" onClick={() => handleEditTeam(team)}>
           <EditOutlined />
         </div>
       ),
@@ -49,7 +54,7 @@ export const getAuthorColumns = (handleDeleteAuthor, handleEditAuthor) => {
       dataIndex: "_id",
       key: "delete",
       render: (_, { _id }) => (
-        <div role="button" onClick={() => handleDeleteAuthor(_id)}>
+        <div role="button" onClick={() => handleDeleteTeam(_id)}>
           <DeleteOutlined />
         </div>
       ),

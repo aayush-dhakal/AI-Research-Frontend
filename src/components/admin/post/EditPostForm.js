@@ -6,8 +6,7 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import JoditEditor from "jodit-react";
-import { AI_Research_Topics, getAuthorOptions } from "@/utils/helpers";
-import AuthorContext from "@/context/author/AuthorContext";
+import { AI_Research_Topics } from "@/utils/helpers";
 import PostContext from "@/context/post/PostContext";
 
 const EditPostForm = () => {
@@ -15,16 +14,13 @@ const EditPostForm = () => {
 
   const { currentPost, updatePost, setCurrentPost } = useContext(PostContext);
 
+  if (!currentPost) router.push("/admin/posts");
+
   const [coverImage, setCoverImage] = useState(currentPost?.coverImage ?? null);
   const [topics, setTopics] = useState(currentPost?.topics ?? []);
-  const [author, setAuthor] = useState(currentPost?.author?._id ?? null);
 
   const editor = useRef(null);
   const [content, setContent] = useState(currentPost?.description ?? "");
-
-  const { authors, getAuthors } = useContext(AuthorContext);
-
-  const authorOptions = getAuthorOptions(authors);
 
   const config = useMemo(() => {
     return {
@@ -47,12 +43,8 @@ const EditPostForm = () => {
     setTopics(value);
   };
 
-  const handleAuthorChange = (value) => {
-    setAuthor(value);
-  };
-
   const onFinish = async (values) => {
-    if (topics.length === 0 || !author) {
+    if (topics.length === 0) {
       toast.error("Fill all the fields");
       return;
     }
@@ -66,7 +58,7 @@ const EditPostForm = () => {
       ...values,
       description: content,
       topics,
-      author,
+      user: localStorage.getItem("userId"),
       coverImage,
     });
     router.push("/admin/posts");
@@ -76,10 +68,6 @@ const EditPostForm = () => {
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
-
-  useEffect(() => {
-    getAuthors();
-  }, []);
 
   return (
     <div>
@@ -155,28 +143,9 @@ const EditPostForm = () => {
               width: "100%",
             }}
             placeholder="Please select the topic"
-            onChange={handleTopicChange} // select is not part of ant design form so we have to manually handle the onChange or else its value will not be reflected after hitting submit button.
+            onChange={handleTopicChange} // select is not part of ant design form so we have to manually handle the onChange or else its value will not be reflected after hitting submit button. If you wrap it inside Form.Item and give it a name like in PostForm then you will get the value in form state and no need to handle onChange by yourself
             options={AI_Research_Topics}
             defaultValue={topics}
-          />
-        </Form.Item>
-
-        <Form.Item label="Select Author">
-          <Select
-            showSearch
-            placeholder="Search to Select"
-            filterOption={(input, option) =>
-              (option?.label ?? "").includes(input)
-            }
-            filterSort={(optionA, optionB) =>
-              (optionA?.label ?? "")
-                .toLowerCase()
-                .localeCompare((optionB?.label ?? "").toLowerCase())
-            }
-            optionFilterProp="children"
-            options={authorOptions}
-            onChange={handleAuthorChange}
-            defaultValue={author}
           />
         </Form.Item>
 

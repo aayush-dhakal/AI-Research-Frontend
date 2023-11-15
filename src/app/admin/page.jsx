@@ -6,8 +6,8 @@ const admin = () => {
   return (
     <>
       <div>
-        <Link href="/admin/authors">
-          <Button type="primary">Authors</Button>
+        <Link href="/admin/teams">
+          <Button type="primary">Teams</Button>
         </Link>
       </div>
       <div className="mt-3">

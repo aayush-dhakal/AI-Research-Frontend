@@ -32,12 +32,3 @@ export const AI_Research_Topics = [
     value: "AI Research for Ethical AI",
   },
 ];
-
-export const getAuthorOptions = (authors) => {
-  const options = authors?.map((author) => ({
-    // label: <div>{author.name}</div>,
-    label: author.name,
-    value: author._id,
-  }));
-  return options;
-};

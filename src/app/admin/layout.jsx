@@ -3,7 +3,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import AuthorState from "@/context/author/AuthorState";
+import TeamState from "@/context/team/TeamState";
 import PostState from "@/context/post/PostState";
 
 export default function AdminLayout({ children }) {
@@ -25,6 +25,8 @@ export default function AdminLayout({ children }) {
         return;
       }
 
+      localStorage.setItem("userId", user._id);
+
       setIsSuccess(true);
     })();
   });
@@ -35,9 +37,9 @@ export default function AdminLayout({ children }) {
 
   return (
     <main className="container m-5">
-      <AuthorState>
+      <TeamState>
         <PostState>{children}</PostState>
-      </AuthorState>
+      </TeamState>
     </main>
   );
 }

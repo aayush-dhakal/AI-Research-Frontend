@@ -3,12 +3,10 @@ import React, { useState, useRef, useMemo, useContext, useEffect } from "react";
 import { Button, Form, Image, Input, Select } from "antd";
 import { CldUploadWidget } from "next-cloudinary";
 import { toast } from "react-toastify";
-import api from "@/utils/api";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import JoditEditor from "jodit-react";
-import { AI_Research_Topics, getAuthorOptions } from "@/utils/helpers";
-import AuthorContext from "@/context/author/AuthorContext";
+import { AI_Research_Topics } from "@/utils/helpers";
 import PostContext from "@/context/post/PostContext";
 
 const PostForm = () => {
@@ -17,15 +15,9 @@ const PostForm = () => {
   const { addPost } = useContext(PostContext);
 
   const [postImage, setPostImage] = useState(null); // set value from props for update component
-  const [topics, setTopics] = useState([]);
-  const [author, setAuthor] = useState(null);
 
   const editor = useRef(null);
   const [content, setContent] = useState("");
-
-  const { authors, getAuthors } = useContext(AuthorContext);
-
-  const authorOptions = getAuthorOptions(authors);
 
   const config = useMemo(() => {
     return {
@@ -44,19 +36,9 @@ const PostForm = () => {
     toast.success("Image uploaded");
   };
 
-  const handleTopicChange = (value) => {
-    setTopics(value);
-  };
-
-  const handleAuthorChange = (value) => {
-    setAuthor(value);
-  };
+  console.log(localStorage.getItem("userId"));
 
   const onFinish = async (values) => {
-    if (topics.length === 0 || !author) {
-      toast.error("Fill all the fields");
-      return;
-    }
     if (!postImage) {
       toast.error("Please upload the image");
       return;
@@ -65,8 +47,7 @@ const PostForm = () => {
     addPost({
       ...values,
       description: content,
-      topics,
-      author,
+      user: localStorage.getItem("userId"),
       coverImage: postImage,
     });
     router.push("/admin/posts");
@@ -75,10 +56,6 @@ const PostForm = () => {
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
-
-  useEffect(() => {
-    getAuthors();
-  }, []);
 
   return (
     <div>
@@ -101,10 +78,6 @@ const PostForm = () => {
         style={{
           maxWidth: 900,
         }}
-        // initialValues={{
-        //   name: "aayush",
-        //   description: "this is sample",
-        // }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
@@ -146,8 +119,12 @@ const PostForm = () => {
           )}
         </Form.Item>
 
-        {/* wrapping select inside form.item for styling(basically to align all the forms fields in same palce) */}
-        <Form.Item label="Topics">
+        {/* wrapping select inside form.item for styling(basically to align all the forms fields in same place and also select being inside form.item now you can access topics from form values) */}
+        <Form.Item
+          label="Topics"
+          name="topics"
+          rules={[{ required: true, message: "Please select the topic" }]}
+        >
           <Select
             mode="multiple"
             allowClear
@@ -155,26 +132,7 @@ const PostForm = () => {
               width: "100%",
             }}
             placeholder="Please select the topic"
-            onChange={handleTopicChange} // select is not part of ant design form so we have to manually handle the onChange or else its value will not be reflected after hitting submit button.
             options={AI_Research_Topics}
-          />
-        </Form.Item>
-
-        <Form.Item label="Select Author">
-          <Select
-            showSearch
-            placeholder="Search to Select"
-            filterOption={(input, option) =>
-              (option?.label ?? "").includes(input)
-            }
-            filterSort={(optionA, optionB) =>
-              (optionA?.label ?? "")
-                .toLowerCase()
-                .localeCompare((optionB?.label ?? "").toLowerCase())
-            }
-            optionFilterProp="children"
-            options={authorOptions}
-            onChange={handleAuthorChange}
           />
         </Form.Item>
 

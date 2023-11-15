@@ -1,8 +1,8 @@
-import EditAuthorForm from "@/components/admin/author/EditAuthorForm";
+import EditTeamForm from "@/components/admin/team/EditTeamForm";
 import React from "react";
 
-const editAuthor = () => {
-  return <EditAuthorForm />;
+const editTeam = () => {
+  return <EditTeamForm />;
 };
 
-export default editAuthor;
+export default editTeam;

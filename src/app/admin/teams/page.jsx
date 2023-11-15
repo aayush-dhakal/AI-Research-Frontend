@@ -1,7 +1,7 @@
-import Authors from "@/components/admin/author/Authors";
+import Teams from "@/components/admin/team/Teams";
 
-const author = () => {
-  return <Authors />;
+const team = () => {
+  return <Teams />;
 };
 
-export default author;
+export default team;

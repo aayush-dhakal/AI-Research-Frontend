@@ -1,18 +1,22 @@
 "use client";
 import React, { useContext, useState } from "react";
-import { Button, Form, Image, Input } from "antd";
+import { Button, Form, Image, Input, Select } from "antd";
 import { CldUploadWidget } from "next-cloudinary";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import AuthorContext from "@/context/author/AuthorContext";
+import TeamContext from "@/context/team/TeamContext";
 
-const AuthorForm = () => {
+const EditTeamForm = () => {
   const router = useRouter();
 
-  const { addAuthor } = useContext(AuthorContext);
+  const { currentTeam, updateTeam, setCurrentTeam } = useContext(TeamContext);
 
-  const [authorImage, setAuthorImage] = useState(null); // set value from props for update component
+  if (!currentTeam) router.push("/admin/teams");
+
+  console.log("currentTeam...", currentTeam);
+
+  const [teamImage, setTeamImage] = useState(currentTeam?.image ?? null); // set value from props for update component
 
   const onImageUpload = (result) => {
     if (!result) {
@@ -20,13 +24,14 @@ const AuthorForm = () => {
       return;
     }
 
-    setAuthorImage(result?.info?.secure_url);
+    setTeamImage(result?.info?.secure_url);
     toast.success("Image uploaded");
   };
 
   const onFinish = async (values) => {
-    addAuthor({ ...values, image: authorImage });
-    router.push("/admin/authors");
+    updateTeam({ id: currentTeam?._id, image: teamImage, ...values });
+    router.push("/admin/teams");
+    setCurrentTeam(null);
   };
 
   const onFinishFailed = (errorInfo) => {
@@ -36,7 +41,7 @@ const AuthorForm = () => {
   return (
     <div>
       <div className="mb-4 d-flex justify-content-around">
-        <h3 className="text-info ">Add an author</h3>
+        <h3 className="text-info ">Edit the team</h3>
         <div>
           <Link href="/admin">
             <Button type="primary">Go back to admin</Button>
@@ -54,10 +59,14 @@ const AuthorForm = () => {
         style={{
           maxWidth: 600,
         }}
-        // initialValues={{
-        //   name: "aayush",
-        //   description: "this is sample",
-        // }}
+        initialValues={{
+          name: currentTeam?.name,
+          description: currentTeam?.description,
+          googleScholar: currentTeam?.googleScholar,
+          linkedIn: currentTeam?.linkedIn,
+          ORCID: currentTeam?.ORCID,
+          role: currentTeam?.role,
+        }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
         autoComplete="off"
@@ -88,16 +97,34 @@ const AuthorForm = () => {
           <Input.TextArea rows={6} />
         </Form.Item>
 
-        <Form.Item label="Facebook" name="facebook">
+        <Form.Item label="Google Scholar" name="googleScholar">
           <Input />
         </Form.Item>
 
-        <Form.Item label="Twitter" name="twitter">
+        <Form.Item label="LinkedIn" name="linkedIn">
           <Input />
         </Form.Item>
 
-        <Form.Item label="Instagram" name="instagram">
+        <Form.Item label="ORCID" name="ORCID">
           <Input />
+        </Form.Item>
+
+        <Form.Item
+          label="Topics"
+          name="role"
+          rules={[{ required: true, message: "Please select the topic" }]}
+        >
+          <Select
+            allowClear
+            style={{
+              width: "100%",
+            }}
+            placeholder="Please select the topic"
+            options={[
+              { label: "Admin", value: "admin" },
+              { label: "User", value: "user" },
+            ]}
+          />
         </Form.Item>
 
         <Form.Item label="Image">
@@ -117,12 +144,12 @@ const AuthorForm = () => {
               );
             }}
           </CldUploadWidget>
-          {authorImage && (
+          {teamImage && (
             <div className="mt-4">
               <Image
                 width={200}
                 // height={200}
-                src={authorImage}
+                src={teamImage}
                 // className="rounded-circle"
               />
             </div>
@@ -136,7 +163,7 @@ const AuthorForm = () => {
           }}
         >
           <Button type="primary" htmlType="submit">
-            Submit
+            Update
           </Button>
         </Form.Item>
       </Form>
@@ -144,4 +171,4 @@ const AuthorForm = () => {
   );
 };
 
-export default AuthorForm;
+export default EditTeamForm;

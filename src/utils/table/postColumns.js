@@ -27,12 +27,6 @@ export const getPostColumns = (handleDeletePost, handleEditAuthor) => {
       render: (_, { coverImage }) => <Image src={coverImage} width={50} />,
     },
     {
-      title: "Author",
-      dataIndex: "author",
-      key: "authorName",
-      render: (_, { author }) => author.name,
-    },
-    {
       title: "Edit",
       dataIndex: "_id",
       key: "edit",
