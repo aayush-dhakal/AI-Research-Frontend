@@ -6,6 +6,8 @@ import Topbar from "./Topbar";
 import Breadcrumb from "../common/Breadcrumb";
 import RightSideBar from "../common/RightSideBar";
 import Head from "next/head";
+import TeamState from "@/context/team/TeamState";
+import PostState from "@/context/post/PostState";
 const initalState = {
   isRightSidebarOpen: false,
   isleftSidebarOpen: false,
@@ -66,13 +68,16 @@ function MainLayout({ children }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="assets/images/logo/logo-icon.svg" />
       </Head>
-      <Topbar />
-      <RightSideBar state={state} dispatch={dispatch} />
-      <CommonHeader state={state} dispatch={dispatch} />
-      <Breadcrumb />
-      {children}
-      <NewsLatter />
-      <CommonFooter />
+
+      <TeamState>
+        <PostState>
+          <Topbar />
+          <CommonHeader state={state} dispatch={dispatch} />
+          {children}
+          <NewsLatter />
+          <CommonFooter />
+        </PostState>
+      </TeamState>
     </>
   );
 }

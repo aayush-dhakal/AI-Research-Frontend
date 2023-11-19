@@ -1,20 +1,11 @@
-import { useEffect, useReducer, useState } from "react";
-import Advertise from "@/components/common/Advertise";
-import NewsLatter from "@/components/common/NewsLatter";
-import Footer1 from "@/components/footer/Footer1";
-import AuthorSection from "@/components/home1/AuthorSection";
-import Banner from "@/components/home1/Banner";
-import BlogSidebar from "@/components/home1/BlogSidebar";
-import Category from "@/components/home1/Category";
-import GetUpdate from "@/components/home1/GetUpdate";
-import Header from "@/components/home1/Header";
-import RecentPost from "@/components/home1/RecentPost";
-import Topbar from "@/components/home1/Topbar";
-import VideoBlog from "@/components/home1/VideoBlog";
-import RightSideBar from "@/components/common/RightSideBar";
 import Preloader from "@/components/common/Preloader";
-import LatestBlog from "@/components/home1/LatestBlog";
-
+import Footer3 from "@/components/footer/Footer3";
+import PopularPost from "@/components/home3/PopularPost";
+import Topbar from "@/components/home3/Topbar";
+import CommonHeader from "@/components/layout/CommonHeader";
+import PostState from "@/context/post/PostState";
+import TeamState from "@/context/team/TeamState";
+import React, { useEffect, useReducer, useState } from "react";
 const initalState = {
   isRightSidebarOpen: false,
   isleftSidebarOpen: false,
@@ -65,7 +56,8 @@ function reducer(state, action) {
       return state;
   }
 }
-export default function Home() {
+
+function Homepage() {
   const [state, dispatch] = useReducer(reducer, initalState);
   const [loading, setLoading] = useState(false);
   useEffect(() => {
@@ -74,28 +66,23 @@ export default function Home() {
       setLoading(true);
     }, 3000);
   }, []);
+
   return (
     <>
       {loading ? (
-        <>
-          <Topbar />
-          <RightSideBar state={state} dispatch={dispatch} />
-          <Header state={state} dispatch={dispatch} />
-          <Banner />
-          <Category />
-          <LatestBlog />
-          <BlogSidebar />
-          <RecentPost />
-          <VideoBlog />
-          <Advertise />
-          <AuthorSection />
-          <GetUpdate />
-          <NewsLatter />
-          <Footer1 />
-        </>
+        <TeamState>
+          <PostState>
+            <Topbar />
+            <CommonHeader state={state} dispatch={dispatch} />
+            <PopularPost />
+            <Footer3 />
+          </PostState>
+        </TeamState>
       ) : (
         <Preloader />
       )}
     </>
   );
 }
+
+export default Homepage;

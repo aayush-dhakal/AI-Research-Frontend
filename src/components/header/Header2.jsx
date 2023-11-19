@@ -1,10 +1,10 @@
-import Link from 'next/link';
-import { useRouter } from 'next/router';
-import React, { useEffect, useRef } from 'react'
+import Link from "next/link";
+import { useRouter } from "next/router";
+import React, { useEffect, useRef } from "react";
 
 function Header2({ state, dispatch }) {
   const headerRef = useRef(null);
-  const currentRoute = useRouter().pathname
+  const currentRoute = useRouter().pathname;
   const toggleMenu = (menu) => {
     dispatch({ type: "TOGGLE_MENU", menu });
   };
@@ -25,7 +25,7 @@ function Header2({ state, dispatch }) {
   }, []);
   return (
     <>
-    <div className={`mobile-search ${state.isModal ? "slide" : ""}`}>
+      <div className={`mobile-search ${state.isModal ? "slide" : ""}`}>
         <div className="container">
           <div className="row d-flex justify-content-center gy-4">
             <div className="col-10">
@@ -43,10 +43,12 @@ function Header2({ state, dispatch }) {
           </div>
         </div>
       </div>
-      <header ref={headerRef}
-        className={`header-area style-2 ${state.scrollY > 10 ? "sticky" : ""}`}>
-    <div className="header-wrap">
-    <div
+      <header
+        ref={headerRef}
+        className={`header-area style-2 ${state.scrollY > 10 ? "sticky" : ""}`}
+      >
+        <div className="header-wrap">
+          <div
             className={`main-nav ${state.isleftSidebarOpen ? "show-menu" : ""}`}
           >
             <div className="mobile-logo-area d-lg-none d-flex justify-content-between align-items-center">
@@ -67,49 +69,9 @@ function Header2({ state, dispatch }) {
             </div>
             <ul className="menu-list">
               <li className="menu-item-has-children">
-                <a
-                  href="#"
-                  className={`drop-down ${
-                    state.activeMenu === "home-one" ? "active" : ""
-                  }`}
-                  onClick={() => toggleMenu("home-one")}
-                >
-                  Home
-                </a>
-                <i
-                  className={`bi bi-chevron-${
-                    state.activeMenu === "home-one" ? "up" : "down"
-                  } dropdown-icon ${
-                    state.activeMenu === "home-one" ? "active" : ""
-                  }`}
-                  onClick={() => toggleMenu("home-one")}
-                />
-                <ul
-                  className={`sub-menu ${
-                    state.activeMenu === "home-one" ? "d-block" : ""
-                  }`}
-                >
-                  <li>
-                    <Link legacyBehavior href="/" className="active">
-                      <a>Home 01</a>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link legacyBehavior href="/index-2">
-                      <a className={currentRoute === "/index-2" ? "active" : ""}>Home 02</a>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link legacyBehavior href="/index-3">
-                      <a>Home 03</a>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link legacyBehavior href="/index-4">
-                      <a>Home 04</a>
-                    </Link>
-                  </li>
-                </ul>
+                <Link legacyBehavior href="/" className="active">
+                  <a>Home</a>
+                </Link>
               </li>
               <li className="menu-item-has-children">
                 <Link legacyBehavior href="/about">
@@ -122,7 +84,7 @@ function Header2({ state, dispatch }) {
                 </Link>
               </li>
               <li className="menu-item-has-children position-inherit">
-              <a href="#">
+                <a href="#">
                   Post
                   <i
                     className="bi bi-chevron-down dropdown-icon2 d-lg-block d-none"
@@ -130,9 +92,9 @@ function Header2({ state, dispatch }) {
                   />
                 </a>
                 <i
-                    className="bi bi-chevron-down dropdown-icon d-lg-none d-block"
-                    onClick={() => toggleMenu("post")}
-                  />
+                  className="bi bi-chevron-down dropdown-icon d-lg-none d-block"
+                  onClick={() => toggleMenu("post")}
+                />
                 <div
                   className={`mega-menu ${
                     state.activeMenu === "post" ? "d-block" : "d-none"
@@ -373,36 +335,56 @@ function Header2({ state, dispatch }) {
               </li>
             </ul>
           </div>
-      <div className="header-logo">
-        <Link legacyBehavior href="/"><a><img alt="image" className="img-fluid" src="assets/images/logo/logo-3.svg" /></a></Link>
-      </div>
-      <div className="nav-right">
-        <ul className="social-1">
-          <li>
-            <a href="https://www.facebook.com/"><i className="bx bxl-facebook" />6.5K</a>
-          </li>
-          <li>
-            <a href="https://www.twitter.com/"><i className="bx bxl-twitter" />3.5K</a>
-          </li>
-          <li>
-            <a href="https://www.pinterest.com/"><i className="bx bxl-pinterest-alt" />2.1K</a>
-          </li>
-          <li>
-            <a href="https://www.instagram.com/"><i className="bx bxl-instagram" />1.9K</a>`
-          </li>
-        </ul>
-        <div className="mobile-menu-btn d-lg-none d-flex" onClick={handleLeftSidebarToggle}>
-          <i className="bi bi-list text-dark" />
+          <div className="header-logo">
+            <Link legacyBehavior href="/">
+              <a>
+                <img
+                  alt="image"
+                  className="img-fluid"
+                  src="assets/images/logo/logo-3.svg"
+                />
+              </a>
+            </Link>
+          </div>
+          <div className="nav-right">
+            <ul className="social-1">
+              <li>
+                <a href="https://www.facebook.com/">
+                  <i className="bx bxl-facebook" />
+                  6.5K
+                </a>
+              </li>
+              <li>
+                <a href="https://www.twitter.com/">
+                  <i className="bx bxl-twitter" />
+                  3.5K
+                </a>
+              </li>
+              <li>
+                <a href="https://www.pinterest.com/">
+                  <i className="bx bxl-pinterest-alt" />
+                  2.1K
+                </a>
+              </li>
+              <li>
+                <a href="https://www.instagram.com/">
+                  <i className="bx bxl-instagram" />
+                  1.9K
+                </a>
+                `
+              </li>
+            </ul>
+            <div
+              className="mobile-menu-btn d-lg-none d-flex"
+              onClick={handleLeftSidebarToggle}
+            >
+              <i className="bi bi-list text-dark" />
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-  </header>
+      </header>
     </>
- 
-  
-  
-
-  )
+  );
 }
 
-export default Header2
+export default Header2;
