@@ -23,7 +23,7 @@ function RightSideBar({ state, dispatch }) {
               <Link legacyBehavior href="/post-format-no-sidebar-02">
                 <a className="image">
                   <img
-                    src="assets/images/blog-list/blog-list1-1.jpg"
+                    src="/assets/images/blog-list/blog-list1-1.jpg"
                     alt="image"
                   />
                 </a>
@@ -31,26 +31,30 @@ function RightSideBar({ state, dispatch }) {
               <div className="content">
                 <h6>
                   <Link legacyBehavior href="/post-format-no-sidebar-02">
-                   <a> Our Begin Now To Being What You Will Be.</a>
+                    <a> Our Begin Now To Being What You Will Be.</a>
                   </Link>
                 </h6>
                 <ul>
                   <li>
-                    <Link legacyBehavior href="/blog-standard"><a>Nov 02, 2022</a></Link>
+                    <Link legacyBehavior href="/blog-standard">
+                      <a>Nov 02, 2022</a>
+                    </Link>
                   </li>
                   <li>
-                    <Link legacyBehavior href="/blog-standard"><a>520 Comment</a></Link>
+                    <Link legacyBehavior href="/blog-standard">
+                      <a>520 Comment</a>
+                    </Link>
                   </li>
                 </ul>
               </div>
             </div>
             <div className="blog-list-5 mb-25">
               <Link legacyBehavior href="/post-format-no-sidebar-02">
-                <a  className="image">
-                <img
-                  src="assets/images/blog-list/blog-list1-3.jpg"
-                  alt="image"
-                />
+                <a className="image">
+                  <img
+                    src="/assets/images/blog-list/blog-list1-3.jpg"
+                    alt="image"
+                  />
                 </a>
               </Link>
               <div className="content">
@@ -61,21 +65,25 @@ function RightSideBar({ state, dispatch }) {
                 </h6>
                 <ul>
                   <li>
-                    <Link legacyBehavior href="/blog-standard"><a>Nov 02, 2022</a></Link>
+                    <Link legacyBehavior href="/blog-standard">
+                      <a>Nov 02, 2022</a>
+                    </Link>
                   </li>
                   <li>
-                    <Link legacyBehavior href="/blog-standard"><a>520 Comment</a></Link>
+                    <Link legacyBehavior href="/blog-standard">
+                      <a>520 Comment</a>
+                    </Link>
                   </li>
                 </ul>
               </div>
             </div>
             <div className="blog-list-5">
               <Link legacyBehavior href="/post-format-no-sidebar-02">
-                <a  className="image">
-                <img
-                  src="assets/images/blog-list/blog-list1-2.jpg"
-                  alt="image"
-                />
+                <a className="image">
+                  <img
+                    src="/assets/images/blog-list/blog-list1-2.jpg"
+                    alt="image"
+                  />
                 </a>
               </Link>
               <div className="content">
@@ -86,10 +94,14 @@ function RightSideBar({ state, dispatch }) {
                 </h6>
                 <ul>
                   <li>
-                    <Link legacyBehavior href="/blog-standard"><a>Nov 11, 2022</a></Link>
+                    <Link legacyBehavior href="/blog-standard">
+                      <a>Nov 11, 2022</a>
+                    </Link>
                   </li>
                   <li>
-                    <Link legacyBehavior href="/blog-standard"><a>454 Comment</a></Link>
+                    <Link legacyBehavior href="/blog-standard">
+                      <a>454 Comment</a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -101,16 +113,18 @@ function RightSideBar({ state, dispatch }) {
                 <div className="swiper-slide">
                   <div className="category-1">
                     <Link legacyBehavior href="/blog-classic">
-                      <a  className="image">
-                      <img
-                        src="assets/images/category/cate1-1.jpg"
-                        alt="image"
-                      />
+                      <a className="image">
+                        <img
+                          src="/assets/images/category/cate1-1.jpg"
+                          alt="image"
+                        />
                       </a>
                     </Link>
                     <div className="content">
                       <h4>
-                        <Link legacyBehavior href="/blog-classic">Business</Link>
+                        <Link legacyBehavior href="/blog-classic">
+                          Business
+                        </Link>
                       </h4>
                       <ul>
                         <li>800 Article</li>
@@ -122,16 +136,18 @@ function RightSideBar({ state, dispatch }) {
                 <div className="swiper-slide">
                   <div className="category-1">
                     <Link legacyBehavior href="/blog-classic">
-                      <a  className="image">
-                      <img
-                        src="assets/images/category/cate1-2.jpg"
-                        alt="image"
-                      />
+                      <a className="image">
+                        <img
+                          src="/assets/images/category/cate1-2.jpg"
+                          alt="image"
+                        />
                       </a>
                     </Link>
                     <div className="content">
                       <h4>
-                        <Link legacyBehavior href="/blog-classic"><a>Life Style</a></Link>
+                        <Link legacyBehavior href="/blog-classic">
+                          <a>Life Style</a>
+                        </Link>
                       </h4>
                       <ul>
                         <li>700 Article</li>
@@ -143,16 +159,18 @@ function RightSideBar({ state, dispatch }) {
                 <div className="swiper-slide">
                   <div className="category-1">
                     <Link legacyBehavior href="/blog-classic">
-                      <a  className="image">
-                      <img
-                        src="assets/images/category/cate1-3.jpg"
-                        alt="image"
-                      />
+                      <a className="image">
+                        <img
+                          src="/assets/images/category/cate1-3.jpg"
+                          alt="image"
+                        />
                       </a>
                     </Link>
                     <div className="content">
                       <h4>
-                        <Link legacyBehavior href="/blog-classic"><a>Fashion</a></Link>
+                        <Link legacyBehavior href="/blog-classic">
+                          <a>Fashion</a>
+                        </Link>
                       </h4>
                       <ul>
                         <li>680 Article</li>
@@ -164,16 +182,18 @@ function RightSideBar({ state, dispatch }) {
                 <div className="swiper-slide">
                   <div className="category-1">
                     <Link legacyBehavior href="/blog-classic">
-                      <a  className="image">
-                      <img
-                        src="assets/images/category/cate1-4.jpg"
-                        alt="image"
-                      />
+                      <a className="image">
+                        <img
+                          src="/assets/images/category/cate1-4.jpg"
+                          alt="image"
+                        />
                       </a>
                     </Link>
                     <div className="content">
                       <h4>
-                        <Link legacyBehavior href="/blog-classic"><a>Travel</a></Link>
+                        <Link legacyBehavior href="/blog-classic">
+                          <a>Travel</a>
+                        </Link>
                       </h4>
                       <ul>
                         <li>900 Article</li>
@@ -185,16 +205,18 @@ function RightSideBar({ state, dispatch }) {
                 <div className="swiper-slide">
                   <div className="category-1">
                     <Link legacyBehavior href="/blog-classic">
-                      <a  className="image">
-                      <img
-                        src="assets/images/category/cate1-5.jpg"
-                        alt="image"
-                      />
+                      <a className="image">
+                        <img
+                          src="/assets/images/category/cate1-5.jpg"
+                          alt="image"
+                        />
                       </a>
                     </Link>
                     <div className="content">
                       <h4>
-                        <Link legacyBehavior href="/blog-classic"><a>Creative</a></Link>
+                        <Link legacyBehavior href="/blog-classic">
+                          <a>Creative</a>
+                        </Link>
                       </h4>
                       <ul>
                         <li>800 Article</li>

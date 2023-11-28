@@ -7,7 +7,7 @@ function Title() {
         <h1>
           Creative magazine, design
           <strong>
-            <img src="assets/images/about/about-title-icon.svg" alt="" />
+            <img src="/assets/images/about/about-title-icon.svg" alt="" />
             &nbsp;focused &nbsp;
           </strong>
           article solutions

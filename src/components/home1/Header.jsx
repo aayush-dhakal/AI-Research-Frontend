@@ -7,7 +7,7 @@ function Header({ state, dispatch }) {
   const toggleMenu = (menu) => {
     dispatch({ type: "TOGGLE_MENU", menu });
   };
-  const curerntRoute = useRouter().pathname
+  const curerntRoute = useRouter().pathname;
   const handleRightSidebarToggle = () =>
     dispatch({ type: "TOGGLE_RIGHT_SIDEBAR" });
   const handleLeftSidebarToggle = () =>
@@ -62,7 +62,7 @@ function Header({ state, dispatch }) {
                 <img
                   alt="image"
                   className="img-fluid"
-                  src="assets/images/logo/logo-2.svg"
+                  src="/assets/images/logo/logo-2.svg"
                 />
               </a>
             </Link>
@@ -77,7 +77,7 @@ function Header({ state, dispatch }) {
                     <img
                       alt="image"
                       className="img-fluid"
-                      src="assets/images/logo/logo-2.svg"
+                      src="/assets/images/logo/logo-2.svg"
                     />
                   </a>
                 </Link>
@@ -112,7 +112,9 @@ function Header({ state, dispatch }) {
                 >
                   <li>
                     <Link legacyBehavior href="/" className="active">
-                      <a className={curerntRoute === "/"? "active":""}>Home 01</a>
+                      <a className={curerntRoute === "/" ? "active" : ""}>
+                        Home 01
+                      </a>
                     </Link>
                   </li>
                   <li>
@@ -151,9 +153,9 @@ function Header({ state, dispatch }) {
                   />
                 </a>
                 <i
-                    className="bi bi-chevron-down dropdown-icon d-lg-none d-block"
-                    onClick={() => toggleMenu("post")}
-                  />
+                  className="bi bi-chevron-down dropdown-icon d-lg-none d-block"
+                  onClick={() => toggleMenu("post")}
+                />
                 <div
                   className={`mega-menu ${
                     state.activeMenu === "post" ? "d-block" : ""

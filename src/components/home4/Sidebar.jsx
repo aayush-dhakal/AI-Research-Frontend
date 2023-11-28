@@ -6,7 +6,7 @@ function Sidebar() {
     <div className="sidebar">
       <Link legacyBehavior href="/">
         <a className="logo">
-        <img src="assets/images/logo/logo-4.svg" alt="image" />
+          <img src="/assets/images/logo/logo-4.svg" alt="image" />
         </a>
       </Link>
       <div className="sidebar-icons">

@@ -23,6 +23,7 @@ function CommonHeader({ state, dispatch }) {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
   return (
     <>
       <div className={`mobile-search ${state.isModal ? "slide" : ""}`}>
@@ -82,7 +83,7 @@ function CommonHeader({ state, dispatch }) {
                 </Link>
               </li>
               <li className="menu-item-has-children">
-                <Link legacyBehavior href="/blog-classic">
+                <Link legacyBehavior href="/blog">
                   <a
                     className={curerntRoute === "/blog-classic" ? "active" : ""}
                   >

@@ -32,3 +32,13 @@ export const AI_Research_Topics = [
     value: "AI Research for Ethical AI",
   },
 ];
+
+export const formattedDate = (dateValue) => {
+  const date = new Date(dateValue);
+
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+};

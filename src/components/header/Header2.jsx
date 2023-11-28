@@ -58,7 +58,7 @@ function Header2({ state, dispatch }) {
                     <img
                       alt="image"
                       className="img-fluid"
-                      src="assets/images/logo/logo-3.svg"
+                      src="/assets/images/logo/logo-3.svg"
                     />
                   </a>
                 </Link>
@@ -341,7 +341,7 @@ function Header2({ state, dispatch }) {
                 <img
                   alt="image"
                   className="img-fluid"
-                  src="assets/images/logo/logo-3.svg"
+                  src="/assets/images/logo/logo-3.svg"
                 />
               </a>
             </Link>

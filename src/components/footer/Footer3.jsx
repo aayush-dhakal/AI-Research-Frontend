@@ -11,7 +11,7 @@ function Footer3() {
               <div className="footer-info">
                 <Link legacyBehavior href="/">
                   <a className="footer-logo">
-                    <img src="assets/images/logo/logo-5.svg" alt="image" />
+                    <img src="/assets/images/logo/logo-5.svg" alt="image" />
                   </a>
                 </Link>
                 <h3>We Would Love to Hear From You.</h3>
@@ -34,7 +34,7 @@ function Footer3() {
                 <Link legacyBehavior href="/post-format-no-sidebar-02">
                   <a className="image">
                     <img
-                      src="assets/images/blog-list/blog-list1-1.jpg"
+                      src="/assets/images/blog-list/blog-list1-1.jpg"
                       alt="image"
                     />
                   </a>
@@ -63,7 +63,7 @@ function Footer3() {
                 <Link legacyBehavior href="/post-format-no-sidebar-02">
                   <a className="image">
                     <img
-                      src="assets/images/blog-list/blog-list1-2.jpg"
+                      src="/assets/images/blog-list/blog-list1-2.jpg"
                       alt="image"
                     />
                   </a>

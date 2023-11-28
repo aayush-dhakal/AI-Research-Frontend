@@ -14,7 +14,7 @@ function Topbar() {
               <img
                 alt="image"
                 className="img-fluid"
-                src="assets/images/logo/logo-1.svg"
+                src="/assets/images/logo/logo-1.svg"
               />
             </a>
           </Link>
