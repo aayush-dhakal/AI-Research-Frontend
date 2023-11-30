@@ -1,16 +1,16 @@
-import AboutContent from '@/components/about/AboutContent'
-import Testimonial from '@/components/about/Testimonial'
-import Title from '@/components/about/Title'
-import React from 'react'
+import AboutContent from "@/components/about/AboutContent";
+import Testimonial from "@/components/about/Testimonial";
+import Title from "@/components/about/Title";
+import React from "react";
 
 function about() {
   return (
     <>
-     <Title/> 
-     <AboutContent/>
-     <Testimonial/>
+      <Title />
+      <AboutContent />
+      <Testimonial />
     </>
-  )
+  );
 }
 
-export default about
+export default about;

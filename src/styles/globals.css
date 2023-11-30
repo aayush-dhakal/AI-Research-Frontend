@@ -105,3 +105,32 @@ a {
     color-scheme: dark;
   }
 }
+
+/* Pagination.css */
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+
+  /* Add additional styling as needed */
+}
+
+.page-item {
+  /* Add styling for each page item */
+  margin: 0 5px;
+}
+
+/* Add more styles for other pagination elements as needed */
+
+@media (max-width: 768px) {
+  /* Adjust styles for smaller screens (e.g., mobile devices) */
+  .pagination {
+    flex-direction: column; /* Stack pages vertically on small screens */
+  }
+
+  .page-item {
+    margin: 5px 0; /* Add some space between page items on small screens */
+  }
+}

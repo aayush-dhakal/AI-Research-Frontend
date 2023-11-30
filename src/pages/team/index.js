@@ -5,50 +5,6 @@ function Author() {
   return (
     <section className="author-section pt-100 pb-100">
       <div className="container">
-        <div className="row gy-2 mb-60">
-          <div className="col-lg-8">
-            <div className="category-wrap">
-              <form>
-                <div className="form-inner">
-                  <select>
-                    <option>All Category</option>
-                    <option>Sports</option>
-                    <option>Lifestyle</option>
-                    <option>Travel</option>
-                    <option>Fashion</option>
-                    <option>World</option>
-                  </select>
-                </div>
-                <div className="form-inner">
-                  <select>
-                    <option>Trending</option>
-                    <option>Trending 01</option>
-                    <option>Trending 02</option>
-                    <option>Trending 03</option>
-                  </select>
-                </div>
-                <div className="form-inner">
-                  <select>
-                    <option>This Month</option>
-                    <option>This Month 01</option>
-                    <option>This Month 02</option>
-                    <option>This Month 03</option>
-                  </select>
-                </div>
-              </form>
-            </div>
-          </div>
-          <div className="col-lg-4">
-            <div className="search-box">
-              <form>
-                <input type="text" placeholder="Search here..." />
-                <button>
-                  <i className="bi bi-search" />
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
         <div className="row g-4 mb-60">
           <div className="col-lg-3 col-md-6 col-sm-6">
             <div className="author-1">

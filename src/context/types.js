@@ -1,4 +1,5 @@
 export const GET_POSTS = "GET_POSTS";
+export const GET_POSTS_COUNT = "GET_POSTS_COUNT";
 export const ADD_POST = "ADD_POST";
 export const DELETE_POST = "DELETE_POST";
 export const SET_CURRENT_POST = "SET_CURRENT_POST";

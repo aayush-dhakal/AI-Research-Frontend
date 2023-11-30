@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef, useMemo, useContext, useEffect } from "react";
+import React, { useState, useRef, useMemo, useContext } from "react";
 import { Button, Form, Image, Input, Select } from "antd";
 import { CldUploadWidget } from "next-cloudinary";
 import { toast } from "react-toastify";
@@ -23,6 +23,7 @@ const PostForm = () => {
     return {
       readonly: false,
       placeholder: "Start typing...",
+      minHeight: 500,
     };
   }, []);
 
@@ -33,7 +34,7 @@ const PostForm = () => {
     }
 
     setPostImage(result?.info?.secure_url);
-    toast.success("Image uploaded");
+    toast.success("Image uploaded. You can save the post now!");
   };
 
   console.log(localStorage.getItem("userId"));

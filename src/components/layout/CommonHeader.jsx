@@ -92,9 +92,9 @@ function CommonHeader({ state, dispatch }) {
                 </Link>
               </li>
               <li className="menu-item-has-children">
-                <Link legacyBehavior href="/author">
-                  <a className={curerntRoute === "/author" ? "active" : ""}>
-                    Author
+                <Link legacyBehavior href="/team">
+                  <a className={curerntRoute === "/team" ? "active" : ""}>
+                    Team
                   </a>
                 </Link>
               </li>

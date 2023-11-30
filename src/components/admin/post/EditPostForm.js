@@ -36,7 +36,7 @@ const EditPostForm = () => {
     }
 
     setCoverImage(result?.info?.secure_url);
-    toast.success("Image uploaded");
+    toast.success("Image uploaded. You can save the post now!");
   };
 
   const handleTopicChange = (value) => {

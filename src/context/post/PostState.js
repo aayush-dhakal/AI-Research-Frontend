@@ -8,6 +8,7 @@ import {
   UPDATE_POST,
   POST_ERROR,
   SET_CURRENT_POST,
+  GET_POSTS_COUNT,
 } from "../types";
 import api from "../../utils/api";
 import { toast } from "react-toastify";
@@ -15,6 +16,7 @@ import { toast } from "react-toastify";
 const PostState = (props) => {
   const initialState = {
     posts: [],
+    totalPosts: null,
     currentPost: null,
     error: null,
   };
@@ -32,6 +34,7 @@ const PostState = (props) => {
       );
 
       dispatch({ type: GET_POSTS, payload: res.data?.data });
+      dispatch({ type: GET_POSTS_COUNT, payload: res.data?.total });
     } catch (err) {
       console.error(err);
       dispatch({ type: POST_ERROR, payload: "API Error" });
@@ -92,6 +95,7 @@ const PostState = (props) => {
     <PostContext.Provider
       value={{
         posts: state.posts,
+        totalPosts: state.totalPosts,
         currentPost: state.currentPost,
         error: state.error,
         getPosts,

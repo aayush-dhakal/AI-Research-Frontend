@@ -1,5 +1,6 @@
 import {
   GET_POSTS,
+  GET_POSTS_COUNT,
   ADD_POST,
   DELETE_POST,
   UPDATE_POST,
@@ -13,6 +14,13 @@ export default (state, action) => {
       return {
         ...state,
         posts: action.payload,
+        loading: false,
+      };
+
+    case GET_POSTS_COUNT:
+      return {
+        ...state,
+        totalPosts: action.payload,
         loading: false,
       };
 
@@ -33,15 +41,9 @@ export default (state, action) => {
       };
 
     case DELETE_POST:
-      console.log("Before deleting post:", state.posts);
-      const updatedPosts = state.posts.filter(
-        (post) => post._id !== action.payload
-      );
-      console.log("After deleting post:", updatedPosts);
       return {
         ...state,
-        // posts: state.posts.filter((post) => post._id !== action.payload),
-        posts: updatedPosts,
+        posts: state.posts.filter((post) => post._id !== action.payload),
         loading: false,
       };
 
