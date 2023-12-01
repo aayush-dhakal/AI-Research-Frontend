@@ -31,7 +31,7 @@ const BlogClassicPage = () => {
       const res = await api.get(
         `/post?sort=${popularStoriesSort.sortBy},${popularStoriesSort.sortOrder}&page=${popularStoriesPaginationPage}&limit=${popularStoriesPaginationLimit}`
       );
-      setRecentPosts(res.data.data);
+      setRecentPosts(res?.data?.data);
     } catch (err) {
       console.error(err);
     }
@@ -132,33 +132,6 @@ const BlogClassicPage = () => {
                 </div>
               ))}
             </div>
-
-            {/* pagiantion */}
-            {/* <nav className="mt-60">
-              <ul className="pagination-list">
-                <li>
-                  <a href="#">
-                    <i className="bi bi-chevron-left" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">1</a>
-                </li>
-                <li>
-                  <a href="#" className="active">
-                    2
-                  </a>
-                </li>
-                <li>
-                  <a href="#">3</a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="bi bi-chevron-right" />
-                  </a>
-                </li>
-              </ul>
-            </nav> */}
 
             <ReactPaginate
               previousLabel="<<"

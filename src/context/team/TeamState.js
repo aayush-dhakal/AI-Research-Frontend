@@ -4,6 +4,7 @@ import TeamReducer from "./TeamReducer";
 import {
   GET_TEAMS,
   // ADD_TEAM,
+  GET_TEAMS_COUNT,
   DELETE_TEAM,
   UPDATE_TEAM,
   TEAM_ERROR,
@@ -15,6 +16,7 @@ import { toast } from "react-toastify";
 const TeamState = (props) => {
   const initialState = {
     teams: [],
+    totalTeams: null,
     currentTeam: null,
     error: null,
   };
@@ -22,11 +24,17 @@ const TeamState = (props) => {
   const [state, dispatch] = useReducer(TeamReducer, initialState);
 
   // Get teams
-  const getTeams = async () => {
+  const getTeams = async (sort, page, pageSize) => {
+    const sortBy = sort?.sortBy ?? "createdAt";
+    const sortOrder = sort?.sortOrder ?? "desc";
+
     try {
-      const res = await api.get("/auth/users");
+      const res = await api.get(
+        `/auth/users?sort=${sortBy},${sortOrder}&page=${page}&limit=${pageSize}`
+      );
 
       dispatch({ type: GET_TEAMS, payload: res.data?.data });
+      dispatch({ type: GET_TEAMS_COUNT, payload: res.data?.total });
     } catch (err) {
       // console.error(err)
       dispatch({ type: TEAM_ERROR, payload: "API Error" });
@@ -88,6 +96,7 @@ const TeamState = (props) => {
     <TeamContext.Provider
       value={{
         teams: state.teams,
+        totalTeams: state.totalTeams,
         currentTeam: state.currentTeam,
         error: state.error,
         getTeams,

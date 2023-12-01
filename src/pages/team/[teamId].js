@@ -1,16 +1,26 @@
 import React, { useEffect, useState } from "react";
-import { authorDetailsData } from "../../data/data";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
 import api from "../../utils/api";
 import Image from "next/image";
+import { formattedDate } from "@/utils/helpers";
+import ReactPaginate from "react-paginate";
 
 const AuthorDetails = () => {
   const router = useRouter();
   const teamId = router.query.teamId;
 
   const [team, setTeam] = useState();
+  const [blogs, setBlogs] = useState([]);
+  const [totalBlogs, setTotalBlogs] = useState([]);
+
+  const numberOfBlogsPerPage = 6;
+
+  const blogsSort = {
+    sortBy: "createdAt",
+    sortOrder: "desc",
+  };
 
   const getTeam = async () => {
     try {
@@ -23,11 +33,60 @@ const AuthorDetails = () => {
     }
   };
 
+  const getPostsForTeam = async (currentPage) => {
+    try {
+      const res = await api.get(
+        `/post/user/${teamId}?sort=${blogsSort.sortBy},${blogsSort.sortOrder}&page=${currentPage}&limit=${numberOfBlogsPerPage}`
+      );
+      setBlogs(res?.data?.data);
+      setTotalBlogs(res?.data?.total);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const [paginationConfig, setPaginationConfig] = useState({
+    marginPagesDisplayed: 3,
+    pageRangeDisplayed: 2,
+  });
+
+  const handlePaginationClick = (selectedPage) => {
+    const currentPage = selectedPage.selected + 1;
+    getPostsForTeam(currentPage, numberOfBlogsPerPage);
+  };
+
+  useEffect(() => {
+    const updatePaginationConfig = () => {
+      const screenWidth = window.innerWidth;
+
+      // Adjust values based on screen size
+      if (screenWidth > 1200) {
+        setPaginationConfig({ marginPagesDisplayed: 3, pageRangeDisplayed: 2 });
+      } else if (screenWidth > 768) {
+        setPaginationConfig({ marginPagesDisplayed: 2, pageRangeDisplayed: 2 });
+      } else {
+        setPaginationConfig({ marginPagesDisplayed: 1, pageRangeDisplayed: 2 });
+      }
+    };
+
+    // Initial update
+    updatePaginationConfig();
+
+    // Update on window resize
+    window.addEventListener("resize", updatePaginationConfig);
+
+    // Cleanup the event listener when the component is unmounted
+    return () => {
+      window.removeEventListener("resize", updatePaginationConfig);
+    };
+  }, []);
+
   useEffect(() => {
     getTeam();
+    getPostsForTeam(1); // on first render setting current page to 1
   }, [teamId]);
 
-  console.log("team...", team);
+  console.log("blogs...", blogs);
 
   return (
     <section className="author-section pt-100 pb-100">
@@ -35,11 +94,6 @@ const AuthorDetails = () => {
         <div className="row gy-5">
           <div className="col-lg-8">
             <div className="author-details">
-              {/* <img
-                className="image"
-                src="/assets/images/authors/author-details-img.jpg"
-                alt="image"
-              /> */}
               <Image
                 src={team?.image}
                 alt="image"
@@ -85,114 +139,80 @@ const AuthorDetails = () => {
                       src="/assets/images/icons/total-post.svg"
                       alt="image"
                     />
-                    Total Post: <span>{team?.posts?.length}</span>
+                    Total Post: <span>{totalBlogs}</span>
                   </li>
                 </ul>
               </div>
             </div>
 
-            {authorDetailsData.map((item) => {
-              const {
-                id,
-                date_day,
-                date_month,
-                category,
-                author_name,
-                title,
-                read_time,
-                img,
-              } = item;
+            {blogs?.map((blog) => {
               return (
-                <div key={id} className="blog-list-2">
+                <div key={blog._id} className="blog-list-2">
                   <div className="date">
-                    <h3>{date_day}</h3>
-                    <p>{date_month}</p>
+                    {formattedDate(blog.createdAt, true)}
                   </div>
                   <div className="content">
                     <ul>
-                      <li>
-                        <Link legacyBehavior href="/author-details">
-                          <a>By &nbsp;{author_name}</a>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link legacyBehavior href="/blog-classic">
-                          <a>{category}</a>
-                        </Link>
-                      </li>
+                      {blog.topics.map((topic, index) => (
+                        <li key={index}>
+                          <Link legacyBehavior href="/blog">
+                            <a>{topic}</a>
+                          </Link>
+                        </li>
+                      ))}
                     </ul>
                     <h4>
-                      <Link legacyBehavior href="/post-format-no-sidebar-02">
-                        <a>{title}</a>
+                      <Link legacyBehavior href={`/blog/${blog._id}`}>
+                        <a>{blog.title}</a>
                       </Link>
                     </h4>
                     <div className="bottom-area">
-                      <Link legacyBehavior href="/post-format-no-sidebar-02">
+                      <Link legacyBehavior href={`/blog/${blog._id}`}>
                         <a className=" eg-btn arrow-btn">
                           View Details
                           <i className="bi bi-arrow-right" />
                         </a>
                       </Link>
-                      <span>
-                        {" "}
-                        <svg
-                          width={9}
-                          height={12}
-                          viewBox="0 0 9 12"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path d="M5.85726 11.3009C7.14547 9.08822 6.60613 6.30362 4.57475 4.68025C4.57356 4.67933 4.57238 4.67818 4.57143 4.6775L4.58021 4.69862L4.57878 4.71446C4.97457 5.72599 4.91905 6.83648 4.43285 7.78924L4.09022 8.461L3.9851 7.71876C3.91368 7.21529 3.71745 6.735 3.41515 6.32382H3.36745L3.3423 6.25495C3.34586 7.02428 3.17834 7.78213 2.8497 8.49704C2.41856 9.43259 2.48191 10.5114 3.01936 11.3833L3.39023 11.9853L2.72299 11.7126C1.62271 11.2628 0.743103 10.3964 0.309587 9.33547C-0.176131 8.15083 -0.0862008 6.77725 0.550429 5.66194C0.882388 5.08179 1.11493 4.46582 1.24187 3.8308L1.36597 3.2084L1.68251 3.76353C1.83366 4.02824 1.94494 4.31476 2.01399 4.61574L2.02111 4.62285L2.02847 4.67107L2.03535 4.669C2.98353 3.45015 3.55158 1.93354 3.6344 0.397865L3.65575 0L4.00076 0.217643C5.4088 1.10544 6.38664 2.52976 6.6887 4.13017L6.69558 4.163L6.69914 4.16805L6.71457 4.14693C6.99053 3.79429 7.13622 3.37485 7.13622 2.93336V2.24967L7.56261 2.7947C8.55398 4.06153 9.06224 5.63301 8.99391 7.21988C8.90991 9.08776 7.85708 10.7272 6.17736 11.6154L5.45008 12L5.85726 11.3009Z" />
-                        </svg>
-                        {read_time}
-                      </span>
                     </div>
                   </div>
-                  <Link legacyBehavior href="/post-format-no-sidebar-02">
+                  <Link legacyBehavior href={`/blog/${blog._id}`}>
                     <a className="image">
-                      <img src={img} alt="imgs" />
+                      <Image
+                        src={blog?.coverImage}
+                        alt="image"
+                        width={250}
+                        height={172}
+                      />
                     </a>
                   </Link>
                 </div>
               );
             })}
 
-            {/* pagiantion */}
-            <nav className="mt-60">
-              <ul className="pagination-list">
-                <li>
-                  <a href="#">
-                    <i className="bi bi-chevron-left" />
-                  </a>
-                </li>
-                <li>
-                  <a href="#">1</a>
-                </li>
-                <li>
-                  <a href="#" className="active">
-                    2
-                  </a>
-                </li>
-                <li>
-                  <a href="#">3</a>
-                </li>
-                <li>
-                  <span />
-                </li>
-                <li>
-                  <a href="#">6</a>
-                </li>
-                <li>
-                  <a href="#">
-                    <i className="bi bi-chevron-right" />
-                  </a>
-                </li>
-              </ul>
-            </nav>
+            <ReactPaginate
+              previousLabel="<<"
+              nextLabel=">>"
+              breakLabel="..."
+              pageCount={totalBlogs / numberOfBlogsPerPage}
+              marginPagesDisplayed={paginationConfig.marginPagesDisplayed}
+              pageRangeDisplayed={paginationConfig.pageRangeDisplayed}
+              onPageChange={handlePaginationClick}
+              containerClassName="pagination justify-content-center mt-5"
+              pageClassName="page-item"
+              pageLinkClassName="page-link"
+              previousClassName="page-item"
+              previousLinkClassName="page-link"
+              nextClassName="page-item"
+              nextLinkClassName="page-link"
+              breakClassName="page-item"
+              breakLinkClassName="page-link"
+              activeClassName="active"
+            />
           </div>
 
           <div className="col-lg-4">
             <div className="post-side-bar-1">
-              <div className="sidebar-widget-1">
+              {/* <div className="sidebar-widget-1">
                 <h6 className="title">Editor Choice</h6>
                 <div className="blog-list-1 mb-25">
                   <Link legacyBehavior href="/post-format-no-sidebar-02">
@@ -281,7 +301,7 @@ const AuthorDetails = () => {
                     </ul>
                   </div>
                 </div>
-              </div>
+              </div> */}
               <div className="sidebar-widget-1">
                 <h6 className="title">Stay Conected</h6>
                 <ul className="social-3">
@@ -292,7 +312,7 @@ const AuthorDetails = () => {
                         Facebook
                       </span>
                       <span>
-                        <strong>3.5K</strong>
+                        <strong>1K</strong>
                         &nbsp;Like
                       </span>
                     </a>
@@ -304,7 +324,7 @@ const AuthorDetails = () => {
                         &nbsp;Twitter
                       </span>
                       <span>
-                        <strong>60k</strong>
+                        <strong>2k</strong>
                         &nbsp;Follower
                       </span>
                     </a>
@@ -316,7 +336,7 @@ const AuthorDetails = () => {
                         &nbsp;Pinterest
                       </span>
                       <span>
-                        <strong>25k</strong>
+                        <strong>2k</strong>
                         &nbsp;Follower
                       </span>
                     </a>
@@ -328,24 +348,12 @@ const AuthorDetails = () => {
                         Instagram
                       </span>
                       <span>
-                        <strong>75k</strong>
-                        Follower
+                        <strong>1k</strong>
+                        &nbsp;Follower
                       </span>
                     </a>
                   </li>
                 </ul>
-              </div>
-              <div
-                className="sidebar-shop-card"
-                style={{
-                  backgroundImage: 'url("/assets/images/bg/shop-bg.jpg")',
-                }}
-              >
-                <span>30% Off</span>
-                <h3>Apple Macbook </h3>
-                <a href="#" className="shop-btn">
-                  Shop Now
-                </a>
               </div>
             </div>
           </div>

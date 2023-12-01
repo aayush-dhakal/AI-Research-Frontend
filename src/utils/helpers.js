@@ -33,12 +33,12 @@ export const AI_Research_Topics = [
   },
 ];
 
-export const formattedDate = (dateValue) => {
+export const formattedDate = (dateValue, smallMonth) => {
   const date = new Date(dateValue);
 
   return date.toLocaleDateString("en-US", {
     year: "numeric",
-    month: "long",
+    month: smallMonth ? "short" : "long",
     day: "numeric",
   });
 };

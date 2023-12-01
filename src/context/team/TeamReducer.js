@@ -1,5 +1,6 @@
 import {
   GET_TEAMS,
+  GET_TEAMS_COUNT,
   // ADD_TEAM,
   DELETE_TEAM,
   UPDATE_TEAM,
@@ -13,6 +14,13 @@ export default (state, action) => {
       return {
         ...state,
         teams: action.payload,
+        loading: false,
+      };
+
+    case GET_TEAMS_COUNT:
+      return {
+        ...state,
+        totalTeams: action.payload,
         loading: false,
       };
 
