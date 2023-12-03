@@ -86,8 +86,6 @@ const AuthorDetails = () => {
     getPostsForTeam(1); // on first render setting current page to 1
   }, [teamId]);
 
-  console.log("blogs...", blogs);
-
   return (
     <section className="author-section pt-100 pb-100">
       <div className="container">

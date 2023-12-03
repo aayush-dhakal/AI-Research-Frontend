@@ -14,8 +14,6 @@ const EditTeamForm = () => {
 
   if (!currentTeam) router.push("/admin/teams");
 
-  console.log("currentTeam...", currentTeam);
-
   const [teamImage, setTeamImage] = useState(currentTeam?.image ?? null); // set value from props for update component
 
   const onImageUpload = (result) => {
@@ -110,16 +108,16 @@ const EditTeamForm = () => {
         </Form.Item>
 
         <Form.Item
-          label="Topics"
+          label="Role"
           name="role"
-          rules={[{ required: true, message: "Please select the topic" }]}
+          rules={[{ required: true, message: "Please select the role" }]}
         >
           <Select
             allowClear
             style={{
               width: "100%",
             }}
-            placeholder="Please select the topic"
+            placeholder="Please select the role"
             options={[
               { label: "Admin", value: "admin" },
               { label: "User", value: "user" },

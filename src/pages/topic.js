@@ -1,7 +1,51 @@
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { AI_Research_Topics } from "@/utils/helpers";
+import api from "../utils/api";
 
-function Topic() {
+const Topic = () => {
+  // Use state to store the number of posts for each topic
+  const [numberOfPosts, setNumberOfPosts] = useState({});
+
+  const blogPaginationPage = 1; // you can put any value as we are only interested in total property of the api response. Put less value so that api response is fast.
+  const blogPaginationLimit = 1;
+
+  const generalBlogsSort = {
+    sortBy: "createdAt",
+    sortOrder: "desc",
+  };
+
+  const getNumberOfPostsForTopic = async (topic) => {
+    try {
+      const res = await api.get(
+        `/post?sort=${generalBlogsSort.sortBy},${
+          generalBlogsSort.sortOrder
+        }&page=${blogPaginationPage}&limit=${blogPaginationLimit}&topic=${encodeURIComponent(
+          topic
+        )}`
+      );
+      return res?.data?.total;
+    } catch (err) {
+      console.error(err);
+      return 0;
+    }
+  };
+
+  // Use useEffect to fetch the number of posts for each topic when the component mounts
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = {};
+      for (const topic of AI_Research_Topics) {
+        const number = await getNumberOfPostsForTopic(topic.value);
+        data[topic.value] = number;
+      }
+      setNumberOfPosts(data);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <section className="category-section pt-100 style-2">
       <div className="container">
@@ -24,175 +68,36 @@ function Topic() {
           </div>
         </div>
         <div className="row justify-content-center gy-5">
-          <div className="col-lg-3 col-md-4 col-sm-6">
-            <div className="category-1">
-              <Link legacyBehavior href="/blog-classic">
-                <a className="image">
-                  <img src="/assets/images/category/cate1-1.jpg" alt="image" />
-                </a>
-              </Link>
-              <div className="content">
-                <h4>
-                  <Link legacyBehavior href="/blog-classic">
-                    <a>Creative</a>
-                  </Link>
-                </h4>
-                <ul>
-                  <li>800 Article</li>
-                  <li>3.9k View</li>
-                </ul>
+          {AI_Research_Topics.map((topic) => (
+            <div className="col-lg-3 col-md-4 col-sm-6" key={topic.value}>
+              <div className="category-1">
+                <Link legacyBehavior href={`/blog?topic=${topic.value}`}>
+                  <a className="image">
+                    <Image
+                      src={topic.src}
+                      alt="image"
+                      width={270}
+                      height={140}
+                    />
+                  </a>
+                </Link>
+                <div className="content">
+                  <h4>
+                    <Link legacyBehavior href={`/blog?topic=${topic.value}`}>
+                      <a>{topic.value}</a>
+                    </Link>
+                  </h4>
+                  <ul>
+                    <li>{numberOfPosts[topic.value]} Articles</li>
+                  </ul>
+                </div>
               </div>
             </div>
-          </div>
-          <div className="col-lg-3 col-md-4 col-sm-6">
-            <div className="category-1">
-              <Link legacyBehavior href="/blog-classic">
-                <a className="image">
-                  <img src="/assets/images/category/cate1-2.jpg" alt="image" />
-                </a>
-              </Link>
-              <div className="content">
-                <h4>
-                  <Link legacyBehavior href="/blog-classic">
-                    <a>Life Style</a>
-                  </Link>
-                </h4>
-                <ul>
-                  <li>700 Article</li>
-                  <li>1.6k View</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-3 col-md-4 col-sm-6">
-            <div className="category-1">
-              <Link legacyBehavior href="/blog-classic">
-                <a className="image">
-                  <img src="/assets/images/category/cate1-3.jpg" alt="image" />
-                </a>
-              </Link>
-              <div className="content">
-                <h4>
-                  <Link legacyBehavior href="/blog-classic">
-                    <a>Fashion</a>
-                  </Link>
-                </h4>
-                <ul>
-                  <li>680 Article</li>
-                  <li>2.8k View</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-3 col-md-4 col-sm-6">
-            <div className="category-1">
-              <Link legacyBehavior href="/blog-classic">
-                <a className="image">
-                  <img src="/assets/images/category/cate1-4.jpg" alt="image" />
-                </a>
-              </Link>
-              <div className="content">
-                <h4>
-                  <Link legacyBehavior href="/blog-classic">
-                    <a>Travel</a>
-                  </Link>
-                </h4>
-                <ul>
-                  <li>900 Article</li>
-                  <li>6.2k View</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-3 col-md-4 col-sm-6">
-            <div className="category-1">
-              <Link legacyBehavior href="/blog-classic">
-                <a className="image">
-                  <img src="/assets/images/category/cate1-6.jpg" alt="image" />
-                </a>
-              </Link>
-              <div className="content">
-                <h4>
-                  <Link legacyBehavior href="/blog-classic">
-                    <a>Fitness</a>
-                  </Link>
-                </h4>
-                <ul>
-                  <li>800 Article</li>
-                  <li>3.9k View</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-3 col-md-4 col-sm-6">
-            <div className="category-1">
-              <Link legacyBehavior href="/blog-classic">
-                <a className="image">
-                  <img src="/assets/images/category/cate1-5.jpg" alt="image" />
-                </a>
-              </Link>
-              <div className="content">
-                <h4>
-                  <Link legacyBehavior href="/blog-classic">
-                    <a>Photography</a>
-                  </Link>
-                </h4>
-                <ul>
-                  <li>680 Article</li>
-                  <li>2.8k View</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-3 col-md-4 col-sm-6">
-            <div className="category-1">
-              <Link legacyBehavior href="/blog-classic">
-                <a className="image">
-                  <img src="/assets/images/category/cate1-7.jpg" alt="image" />
-                </a>
-              </Link>
-              <div className="content">
-                <h4>
-                  <Link legacyBehavior href="/blog-classic">
-                    <a>Real State</a>
-                  </Link>
-                </h4>
-                <ul>
-                  <li>900 Article</li>
-                  <li>6.2k View</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div className="col-lg-3 col-md-4 col-sm-6">
-            <div className="category-1">
-              <Link legacyBehavior href="/blog-classic">
-                <a className="image">
-                  <img src="/assets/images/category/cate1-5.jpg" alt="image" />
-                </a>
-              </Link>
-              <div className="content">
-                <h4>
-                  <Link legacyBehavior href="/blog-classic">
-                    <a>Creative</a>
-                  </Link>
-                </h4>
-                <ul>
-                  <li>800 Article</li>
-                  <li>3.9k View</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="load-more-btn">
-          <Link legacyBehavior href="/topic">
-            <a className="eg-btn btn--primary btn--lg"> Load More</a>
-          </Link>
+          ))}
         </div>
       </div>
     </section>
   );
-}
+};
 
 export default Topic;

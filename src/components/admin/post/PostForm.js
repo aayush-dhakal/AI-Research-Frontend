@@ -37,8 +37,6 @@ const PostForm = () => {
     toast.success("Image uploaded. You can save the post now!");
   };
 
-  console.log(localStorage.getItem("userId"));
-
   const onFinish = async (values) => {
     if (!postImage) {
       toast.error("Please upload the image");
@@ -55,7 +53,7 @@ const PostForm = () => {
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    console.error("Failed:", errorInfo);
   };
 
   return (

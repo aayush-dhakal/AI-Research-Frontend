@@ -2,34 +2,42 @@ export const AI_Research_Topics = [
   {
     label: "AI Research for Healthcare",
     value: "AI Research for Healthcare",
+    src: "/assets/images/category/healthcare.jpg",
   },
   {
     label: "AI Research for Education",
     value: "AI Research for Education",
+    src: "/assets/images/category/education.jpg",
   },
   {
     label: "AI Research Environment",
     value: "AI Research Environment",
+    src: "/assets/images/category/environment.jpg",
   },
   {
     label: "AI Research for Agriculture",
     value: "AI Research for Agriculture",
+    src: "/assets/images/category/agriculture.jpg",
   },
   {
     label: "AI Research Disaster Response",
     value: "AI Research Disaster Response",
+    src: "/assets/images/category/disaster.jpg",
   },
   {
     label: "AI Research for Infrastructure and Urban Planning",
     value: "AI Research for Infrastructure and Urban Planning",
+    src: "/assets/images/category/infrastructure.jpg",
   },
   {
     label: "AI Research for Conversation",
     value: "AI Research for Conversation",
+    src: "/assets/images/category/conversation.jpg",
   },
   {
     label: "AI Research for Ethical AI",
     value: "AI Research for Ethical AI",
+    src: "/assets/images/category/ethical.jpg",
   },
 ];
 

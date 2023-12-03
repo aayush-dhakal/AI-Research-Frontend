@@ -24,13 +24,17 @@ const PostState = (props) => {
   const [state, dispatch] = useReducer(PostReducer, initialState);
 
   // Get posts
-  const getPosts = async (sort, page, pageSize) => {
+  const getPosts = async (sort, page, pageSize, topic = "") => {
     const sortBy = sort?.sortBy ?? "createdAt";
     const sortOrder = sort?.sortOrder ?? "desc";
 
+    const topicFilter = encodeURIComponent(topic);
+
     try {
       const res = await api.get(
-        `/post?sort=${sortBy},${sortOrder}&page=${page}&limit=${pageSize}`
+        `/post?sort=${sortBy},${sortOrder}&page=${page}&limit=${pageSize}&topic=${
+          topic && topicFilter
+        }`
       );
 
       dispatch({ type: GET_POSTS, payload: res.data?.data });

@@ -12,8 +12,6 @@ const Posts = () => {
   const { posts, getPosts, deletePost, setCurrentPost } =
     useContext(PostContext);
 
-  console.log("posts...", posts);
-
   const handleDeletePost = (id) => {
     deletePost(id);
   };

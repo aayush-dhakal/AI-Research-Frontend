@@ -1,7 +1,7 @@
 import Preloader from "@/components/common/Preloader";
-import Footer3 from "@/components/footer/Footer3";
 import PopularPost from "@/components/home3/PopularPost";
 import Topbar from "@/components/home3/Topbar";
+import CommonFooter from "@/components/layout/CommonFooter";
 import CommonHeader from "@/components/layout/CommonHeader";
 import PostState from "@/context/post/PostState";
 import TeamState from "@/context/team/TeamState";
@@ -75,7 +75,7 @@ function Homepage() {
             <Topbar />
             <CommonHeader state={state} dispatch={dispatch} />
             <PopularPost />
-            <Footer3 />
+            <CommonFooter />
           </PostState>
         </TeamState>
       ) : (

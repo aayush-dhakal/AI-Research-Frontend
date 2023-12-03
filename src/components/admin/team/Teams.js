@@ -18,9 +18,7 @@ const Teams = () => {
   };
 
   const handleEditTeam = (team) => {
-    console.log("team....", team);
     setCurrentTeam(team);
-    console.log("currentTeam....", currentTeam);
     router.push("/admin/teams/edit");
   };
 

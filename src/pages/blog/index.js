@@ -5,8 +5,12 @@ import Image from "next/image";
 import { formattedDate } from "@/utils/helpers";
 import api from "../../utils/api";
 import ReactPaginate from "react-paginate";
+import { useRouter } from "next/router";
 
 const BlogClassicPage = () => {
+  const router = useRouter();
+  const { topic } = router.query;
+
   const { posts, getPosts, totalPosts } = useContext(PostContext);
 
   const [recentPosts, setRecentPosts] = useState([]);
@@ -75,9 +79,23 @@ const BlogClassicPage = () => {
 
   useEffect(() => {
     // pass sort and limit params in this function as params
-    getPosts(generalStoriesSort, 1, numberOfBlogsPerPage);
+    getPosts(generalStoriesSort, 1, numberOfBlogsPerPage, topic);
     getPopularPosts();
   }, []);
+
+  if (posts?.length === 0) {
+    return (
+      <section className="blog-classic pt-100 pb-100">
+        <div className="container">
+          <div className="row gy-5">
+            <div className="col-lg-8">
+              <div className="row g-4">No posts</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="blog-classic pt-100 pb-100">

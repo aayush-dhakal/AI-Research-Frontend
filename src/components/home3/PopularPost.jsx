@@ -53,8 +53,8 @@ const PopularPost = () => {
             </div>
           </div>
           <div className="col-sm-4 d-flex justify-content-sm-end mb-4">
-            <Link legacyBehavior href="/blog-classic">
-              <a className=" eg-btn arrow-btn style-2">
+            <Link legacyBehavior href="/blog">
+              <a className="eg-btn arrow-btn style-2">
                 View Post
                 <i className="bi bi-arrow-right" />
               </a>

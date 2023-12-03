@@ -1,3 +1,4 @@
+import React from "react";
 import "../../public//assets/css/bootstrap-icons.css";
 import "../../public//assets/css/bootstrap.min.css";
 import "../../public//assets/css/boxicons.min.css";

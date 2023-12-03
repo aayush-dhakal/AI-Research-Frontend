@@ -66,7 +66,7 @@ const TeamState = (props) => {
       dispatch({ type: UPDATE_TEAM, payload: res.data?.data });
       toast.success("Team updated");
     } catch (err) {
-      console.log("errr....", err);
+      console.error("errr....", err);
       dispatch({ type: TEAM_ERROR, payload: "API Error" });
       toast.error("Error updating the team", err);
     }

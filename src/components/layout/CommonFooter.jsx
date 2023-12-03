@@ -1,7 +1,34 @@
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import { formattedDate } from "@/utils/helpers";
+import api from "../../utils/api";
 
 function CommonFooter() {
+  const [recentPosts, setRecentPosts] = useState([]);
+
+  const recentPostSort = {
+    sortBy: "createdAt",
+    sortOrder: "desc",
+  };
+  const paginationPage = 1;
+  const paginationLimit = 2;
+
+  const getRecentPosts = async () => {
+    try {
+      const res = await api.get(
+        `/post?sort=${recentPostSort.sortBy},${recentPostSort.sortOrder}&page=${paginationPage}&limit=${paginationLimit}`
+      );
+      setRecentPosts(res.data.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    getRecentPosts();
+  }, []);
+
   return (
     <footer className="style-1">
       <div className="container">
@@ -27,64 +54,37 @@ function CommonFooter() {
           </div>
           <div className="col-xl-4 col-lg-5 col-md-6">
             <h4 className="footer-title">Top Article This Week</h4>
-            <div className="blog-list-1 mb-25">
-              <Link legacyBehavior href="/post-format-no-sidebar-02">
-                <a className="image">
-                  <img
-                    src="/assets/images/blog-list/blog-list1-1.jpg"
-                    alt="image"
-                  />
-                </a>
-              </Link>
-              <div className="content">
-                <h6>
-                  <Link legacyBehavior href="/post-format-no-sidebar-02">
-                    <a>Our Begin Now To Being What You Will Be.</a>
-                  </Link>
-                </h6>
-                <ul>
-                  <li>
-                    <Link legacyBehavior href="/blog-standard">
-                      <a>Nov 02, 2022</a>
+            {recentPosts?.map((post, index) => (
+              <div
+                className={`blog-list-1 ${index === 0 && "mb-25"}`}
+                key={post._id}
+              >
+                <Link legacyBehavior href={`/blog/${post._id}`}>
+                  <a className="image">
+                    <Image
+                      src={post.coverImage}
+                      alt="image"
+                      width={110}
+                      height={75}
+                    />
+                  </a>
+                </Link>
+                <div className="content">
+                  <h6>
+                    <Link legacyBehavior href={`/blog/${post._id}`}>
+                      <a>{post.title}</a>
                     </Link>
-                  </li>
-                  <li>
-                    <Link legacyBehavior href="/blog-standard">
-                      <a>520 Comment</a>
-                    </Link>
-                  </li>
-                </ul>
+                  </h6>
+                  <ul>
+                    <li>
+                      <Link legacyBehavior href={`/blog/${post._id}`}>
+                        <a>{formattedDate(post.createdAt)}</a>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
               </div>
-            </div>
-            <div className="blog-list-1">
-              <Link legacyBehavior href="/post-format-no-sidebar-02">
-                <a className="image">
-                  <img
-                    src="/assets/images/blog-list/blog-list1-2.jpg"
-                    alt="image"
-                  />
-                </a>
-              </Link>
-              <div className="content">
-                <h6>
-                  <Link legacyBehavior href="/post-format-no-sidebar-02">
-                    <a>Start now to become what you will be.</a>
-                  </Link>
-                </h6>
-                <ul>
-                  <li>
-                    <Link legacyBehavior href="/blog-standard">
-                      <a>Nov 11, 2022</a>
-                    </Link>
-                  </li>
-                  <li>
-                    <Link legacyBehavior href="/blog-standard">
-                      <a>454 Comment</a>
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            ))}
           </div>
           <div className="col-xl-3 col-lg-2 col-md-6 col-sm-6 col-6">
             <h4 className="footer-title">Quick Link</h4>
@@ -100,13 +100,13 @@ function CommonFooter() {
                 </Link>
               </li>
               <li>
-                <Link legacyBehavior href="/post-format-no-sidebar-01">
-                  <a>Post</a>
+                <Link legacyBehavior href="/blog">
+                  <a>Blog</a>
                 </Link>
               </li>
               <li>
-                <Link legacyBehavior href="/blog-classic">
-                  <a>Blog</a>
+                <Link legacyBehavior href="/team">
+                  <a>Team</a>
                 </Link>
               </li>
               <li>

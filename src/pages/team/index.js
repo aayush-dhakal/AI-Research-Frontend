@@ -51,8 +51,6 @@ function Author() {
     };
   }, []);
 
-  console.log("teams...", teams);
-
   useEffect(() => {
     getTeams(generalTeamsSort, 1, numberOfTeamsPerPage);
   }, []);
