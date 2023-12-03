@@ -46,8 +46,9 @@ function CommonFooter() {
               <p>Any question for us?</p>
               <form>
                 <div className="form-inner">
-                  <input type="email" placeholder="Enter Your Email..." />
-                  <button type="text">Send</button>
+                  <Link href="/contact">
+                    <button type="text">Send Us an Email</button>
+                  </Link>
                 </div>
               </form>
             </div>

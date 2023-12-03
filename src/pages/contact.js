@@ -1,6 +1,7 @@
+import ContactForm from "@/components/contact/ContactForm";
 import React from "react";
 
-function contact() {
+const contact = () => {
   return (
     <section className="contact-section pt-100 pb-100">
       <div className="container">
@@ -64,44 +65,13 @@ function contact() {
             <div className="form-title">
               <h2>Have Any Questions</h2>
             </div>
-            <form className="contact-form">
-              <div className="row">
-                <div className="col-12">
-                  <div className="form-inner">
-                    <input type="text" placeholder="Enter Your Name" />
-                  </div>
-                </div>
-                <div className="col-6">
-                  <div className="form-inner">
-                    <input type="email" placeholder="Enter your email" />
-                  </div>
-                </div>
-                <div className="col-6">
-                  <div className="form-inner">
-                    <input type="text" placeholder="Enter Your Subject" />
-                  </div>
-                </div>
-                <div className="col-12">
-                  <div className="form-inner">
-                    <textarea
-                      rows={5}
-                      placeholder="Enter Your Messege"
-                      defaultValue={""}
-                    />
-                  </div>
-                </div>
-                <div className="col-12">
-                  <button type="submit" className="eg-btn btn--primary btn--lg">
-                    Send Message
-                  </button>
-                </div>
-              </div>
-            </form>
+
+            <ContactForm />
           </div>
         </div>
       </div>
     </section>
   );
-}
+};
 
 export default contact;

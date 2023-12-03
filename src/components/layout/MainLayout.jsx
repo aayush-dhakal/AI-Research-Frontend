@@ -1,10 +1,7 @@
 import React, { useReducer } from "react";
 import CommonHeader from "./CommonHeader";
 import CommonFooter from "./CommonFooter";
-import NewsLatter from "../common/NewsLatter";
 import Topbar from "./Topbar";
-import Breadcrumb from "../common/Breadcrumb";
-import RightSideBar from "../common/RightSideBar";
 import Head from "next/head";
 import TeamState from "@/context/team/TeamState";
 import PostState from "@/context/post/PostState";
