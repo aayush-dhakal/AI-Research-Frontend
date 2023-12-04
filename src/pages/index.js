@@ -1,11 +1,12 @@
+import React, { useEffect, useReducer, useState } from "react";
 import Preloader from "@/components/common/Preloader";
-import PopularPost from "@/components/home3/PopularPost";
-import Topbar from "@/components/home3/Topbar";
+import PopularPost from "@/components/home/PopularPost";
+import Topbar from "@/components/home/Topbar";
 import CommonFooter from "@/components/layout/CommonFooter";
 import CommonHeader from "@/components/layout/CommonHeader";
 import PostState from "@/context/post/PostState";
 import TeamState from "@/context/team/TeamState";
-import React, { useEffect, useReducer, useState } from "react";
+
 const initalState = {
   isRightSidebarOpen: false,
   isleftSidebarOpen: false,

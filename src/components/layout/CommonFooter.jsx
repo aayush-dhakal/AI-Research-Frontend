@@ -159,35 +159,10 @@ function CommonFooter() {
             </ul>
           </div>
         </div>
-        <div className="help-center d-flex justify-content-md-between justify-content-center align-items-center">
-          <h5>
-            <Link legacyBehavior href="/contact">
-              <a>Help Center</a>
-            </Link>
-          </h5>
-          <ul className="help-list">
-            <li>
-              <a href="#">Privacy Policy</a>
-            </li>
-            <li>
-              <a href="#">Terms &amp; Conditions</a>
-            </li>
-            <li>
-              <a href="#">Services</a>
-            </li>
-            <li>
-              <Link legacyBehavior href="/contact">
-                <a>Help</a>
-              </Link>
-            </li>
-          </ul>
-        </div>
+
         <div className="row copyright-area">
           <div className="col-lg-12 text-center">
-            <p>
-              © 2023 Blogxton is Proudly Powered by{" "}
-              <a href="https://www.egenslab.com/">Egens Theme</a>
-            </p>
+            <p>© 2023 AI Research For Good</p>
           </div>
         </div>
       </div>

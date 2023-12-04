@@ -31,7 +31,7 @@ const SignUp = () => {
     }
 
     try {
-      const res = await api.post(
+      await api.post(
         "/auth/register",
         { ...values, image: userImage },
         {

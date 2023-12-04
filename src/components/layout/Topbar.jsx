@@ -22,25 +22,21 @@ const Topbar = () => {
           <li>
             <a href="https://www.facebook.com/">
               <i className="bx bxl-facebook" />
-              6.5K
             </a>
           </li>
           <li>
             <a href="https://www.twitter.com/">
               <i className="bx bxl-twitter" />
-              3.5K
             </a>
           </li>
           <li>
             <a href="https://www.pinterest.com/">
               <i className="bx bxl-pinterest-alt" />
-              2.1K
             </a>
           </li>
           <li>
             <a href="https://www.instagram.com/">
               <i className="bx bxl-instagram" />
-              1.9K
             </a>
           </li>
         </ul>

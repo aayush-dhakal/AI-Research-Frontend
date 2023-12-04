@@ -25,7 +25,7 @@ const ContactForm = () => {
       template_params: {
         from_name: name,
         from_email: email,
-        to_name: "AI Research",
+        to_name: "AI Research For Good",
         message: message,
       },
     };

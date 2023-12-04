@@ -12,7 +12,7 @@ const Login = () => {
 
   const onFinish = async (values) => {
     try {
-      const res = await api.post("/auth/login", values, {
+      await api.post("/auth/login", values, {
         withCredentials: true, // this is absolutely essential to set the cookie in browser
       });
       router.push("/admin");

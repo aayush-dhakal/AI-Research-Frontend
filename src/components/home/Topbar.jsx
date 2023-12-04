@@ -12,24 +12,34 @@ function Topbar() {
               </a>
             </li>
             <li>
-              <a href="#">
+              <a
+                href="https://twitter.com/VancityReynolds"
+                rel="noreferrer"
+                target="_blank"
+              >
                 <i className="bx bxl-twitter" />
               </a>
             </li>
             <li>
-              <a href="#">
-                <i className="bx bxl-pinterest-alt" />
+              <a
+                href="https://www.linkedin.com/company/ai-research-for-good"
+                rel="noreferrer"
+                target="_blank"
+              >
+                <i className="bx bxl-linkedin" />
               </a>
             </li>
             <li>
-              <a href="#">
+              <a
+                href="https://www.instagram.com/airesearchforgood"
+                rel="noreferrer"
+                target="_blank"
+              >
                 <i className="bx bxl-instagram" />
               </a>
             </li>
           </ul>
         </div>
-        {/* <p>Welcome, Subscribe our <a href="#newsletter">newsletter</a> get unlimited article. </p>
-      <div className="date">Novembar 30, 2022 <span>28°C</span></div> */}
       </div>
     </div>
   );
