@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef } from "react";
@@ -26,31 +27,39 @@ function CommonHeader({ state, dispatch }) {
 
   return (
     <>
-      <div className={`mobile-search ${state.isModal ? "slide" : ""}`}>
-        <div className="container">
-          <div className="row d-flex justify-content-center gy-4">
-            <div className="col-10">
-              <label>What are you looking for?</label>
-              <input type="text" placeholder="Search Blog, Magazin" />
-            </div>
-            <div className="col-2 d-flex justify-content-end align-items-sm-center align-items-end gap-2">
-              <div className="search-cross-btn">
-                <i className="bi bi-search" />
-              </div>
-              <div className="search-cross-btn" onClick={handelSearchModal}>
-                <i className="bi bi-x-lg" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
       <header
         ref={headerRef}
         className={`header-area style-1 sibling-2 ${
           state.scrollY > 10 ? "sticky" : ""
         }`}
       >
-        <div className="container d-flex justify-content-end align-items-center">
+        <div className="container d-flex justify-content-between align-items-center">
+          <div className="sidebar-button  mobile-menu-btn d-lg-flex d-none">
+            <Link legacyBehavior href="/">
+              <a>
+                <Image
+                  src="/assets/images/company-logo/white-logo.png"
+                  alt="image"
+                  width={135}
+                  height={30}
+                />
+              </a>
+            </Link>
+          </div>
+
+          <div className="header-resp-logo d-lg-none d-flex">
+            <Link legacyBehavior href="/">
+              <a>
+                <Image
+                  src="/assets/images/company-logo/white-logo.png"
+                  alt="image"
+                  width={135}
+                  height={30}
+                />
+              </a>
+            </Link>
+          </div>
+
           <div
             className={`main-nav ${state.isleftSidebarOpen ? "show-menu" : ""}`}
           >

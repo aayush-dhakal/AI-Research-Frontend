@@ -96,10 +96,6 @@ function Author() {
                           <i className="bx bxl-google" />
                           Google Scholor
                         </span>
-                        <span>
-                          <strong>3.5K</strong>
-                          &nbsp;Like
-                        </span>
                       </a>
                     </li>
                     {/* <li>
@@ -120,10 +116,6 @@ function Author() {
                           <i className="bx bxl-linkedin" />
                           LinkedIn
                         </span>
-                        <span>
-                          <strong>25k</strong>
-                          &nbsp;Follower
-                        </span>
                       </a>
                     </li>
                     <li>
@@ -131,10 +123,6 @@ function Author() {
                         <span>
                           <i className="bx bi-archive" />
                           ORCID
-                        </span>
-                        <span>
-                          <strong>75k</strong>
-                          &nbsp;Follower
                         </span>
                       </a>
                     </li>

@@ -37,7 +37,12 @@ function CommonFooter() {
             <div className="footer-info">
               <Link legacyBehavior href="/">
                 <a className="footer-logo">
-                  <img src="/assets/images/logo/logo-2.svg" alt="image" />
+                  <Image
+                    src="/assets/images/company-logo/white-logo.png"
+                    alt="image"
+                    width={180}
+                    height={40}
+                  />
                 </a>
               </Link>
               <h3>We Would Love to Hear From You.</h3>
@@ -124,7 +129,7 @@ function CommonFooter() {
                 <a href="https://www.facebook.com/">
                   <div className="icon">
                     <i className="bx bxl-facebook" />
-                    <span>5.5k</span>
+                    <span>F</span>
                   </div>
                   <p>Facebook</p>
                 </a>
@@ -133,25 +138,33 @@ function CommonFooter() {
                 <a href="https://www.twitter.com/">
                   <div className="icon">
                     <i className="bx bxl-twitter" />
-                    <span>5.5k</span>
+                    <span>T</span>
                   </div>
                   <p>Twitter</p>
                 </a>
               </li>
               <li>
-                <a href="https://www.pinterest.com/">
+                <a
+                  href="https://www.linkedin.com/company/ai-research-for-good"
+                  rel="noreferrer"
+                  target="_blank"
+                >
                   <div className="icon">
-                    <i className="bx bxl-pinterest" />
-                    <span>5.5k</span>
+                    <i className="bx bxl-linkedin" />
+                    <span>L</span>
                   </div>
-                  <p>Pinterest</p>
+                  <p>LinkedIn</p>
                 </a>
               </li>
               <li>
-                <a href="https://www.instagram.com/">
+                <a
+                  href="https://www.instagram.com/airesearchforgood"
+                  rel="noreferrer"
+                  target="_blank"
+                >
                   <div className="icon">
                     <i className="bx bxl-instagram" />
-                    <span>5.5k</span>
+                    <span>I</span>
                   </div>
                   <p>Instagram</p>
                 </a>
