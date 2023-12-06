@@ -23,13 +23,8 @@ const Topbar = () => {
 
         <ul className="social-1">
           <li>
-            <a href="#">
-              <i className="bx bxl-facebook" />
-            </a>
-          </li>
-          <li>
             <a
-              href="https://twitter.com/VancityReynolds"
+              href="https://twitter.com/airesearch4good"
               rel="noreferrer"
               target="_blank"
             >

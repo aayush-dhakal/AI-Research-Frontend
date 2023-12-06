@@ -112,6 +112,17 @@ function CommonHeader({ state, dispatch }) {
                   </a>
                 </Link>
               </li>
+              <li>
+                <Link legacyBehavior href="/contact">
+                  <a
+                    href="https://www.buymeacoffee.com/airesearchforgood?fbclid=IwAR2_t5Zs7UJMSAX6uGFiMh---5QrcyONp7GfrP3jNaaBZLlvCqev5_eHmaU"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Donate
+                  </a>
+                </Link>
+              </li>
             </ul>
           </div>
 

@@ -126,16 +126,11 @@ function CommonFooter() {
             <h4 className="footer-title">Social Media</h4>
             <ul className="social-2">
               <li>
-                <a href="https://www.facebook.com/">
-                  <div className="icon">
-                    <i className="bx bxl-facebook" />
-                    <span>F</span>
-                  </div>
-                  <p>Facebook</p>
-                </a>
-              </li>
-              <li>
-                <a href="https://www.twitter.com/">
+                <a
+                  href="https://twitter.com/airesearch4good"
+                  rel="noreferrer"
+                  target="_blank"
+                >
                   <div className="icon">
                     <i className="bx bxl-twitter" />
                     <span>T</span>
