@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 import { Image, Tag } from "antd";
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 
@@ -8,6 +9,11 @@ export const getPostColumns = (handleDeletePost, handleEditAuthor) => {
       title: "Title",
       dataIndex: "title",
       key: "title",
+    },
+    {
+      title: "Author",
+      dataIndex: ["user", "name"],
+      key: "author",
     },
     {
       title: "Topics",

@@ -10,7 +10,7 @@ import { getTeamColumns } from "@/utils/table/teamColumns";
 const Teams = () => {
   const router = useRouter();
 
-  const { teams, getTeams, deleteTeam, setCurrentTeam, currentTeam } =
+  const { teams, getTeams, deleteTeam, setCurrentTeam, totalTeams } =
     useContext(TeamContext);
 
   const handleDeleteTeam = (id) => {
@@ -24,8 +24,14 @@ const Teams = () => {
 
   const teamColumns = getTeamColumns(handleDeleteTeam, handleEditTeam);
 
+  const teamsSort = {
+    sortBy: "createdAt",
+    sortOrder: "desc",
+  };
+  const numberOfTeamsPerPage = 15;
+
   useEffect(() => {
-    getTeams();
+    getTeams(teamsSort, 1, numberOfTeamsPerPage);
   }, []);
 
   return (
@@ -38,7 +44,17 @@ const Teams = () => {
         </div>
         <h3 className="mb-2 text-info">Teams</h3>
       </div>
-      <Table dataSource={teams} columns={teamColumns} />
+      <Table
+        dataSource={teams}
+        columns={teamColumns}
+        pagination={{
+          pageSize: numberOfTeamsPerPage,
+          total: totalTeams,
+          onChange: (page) => {
+            getTeams(teamsSort, page, numberOfTeamsPerPage);
+          },
+        }}
+      />
     </div>
   );
 };

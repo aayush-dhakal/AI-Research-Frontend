@@ -9,7 +9,7 @@ import { getPostColumns } from "@/utils/table/postColumns";
 const Posts = () => {
   const router = useRouter();
 
-  const { posts, getPosts, deletePost, setCurrentPost } =
+  const { posts, getPosts, deletePost, setCurrentPost, totalPosts } =
     useContext(PostContext);
 
   const handleDeletePost = (id) => {
@@ -23,8 +23,14 @@ const Posts = () => {
 
   const postColumns = getPostColumns(handleDeletePost, handleEditAuthor);
 
+  const postsSort = {
+    sortBy: "createdAt",
+    sortOrder: "desc",
+  };
+  const numberOfPostsPerPage = 15;
+
   useEffect(() => {
-    getPosts();
+    getPosts(postsSort, 1, numberOfPostsPerPage);
   }, []);
 
   return (
@@ -40,7 +46,17 @@ const Posts = () => {
           <Button type="primary">Add Post</Button>
         </Link>
       </div>
-      <Table dataSource={posts} columns={postColumns} />
+      <Table
+        dataSource={posts}
+        columns={postColumns}
+        pagination={{
+          pageSize: numberOfPostsPerPage,
+          total: totalPosts,
+          onChange: (page) => {
+            getPosts(postsSort, page, numberOfPostsPerPage);
+          },
+        }}
+      />
     </div>
   );
 };
