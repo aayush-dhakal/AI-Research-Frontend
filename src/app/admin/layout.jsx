@@ -1,12 +1,12 @@
 "use client";
 
 import React from "react";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import TeamState from "@/context/team/TeamState";
 import PostState from "@/context/post/PostState";
 import { toast } from "react-toastify";
+import api from "../../utils/api";
 
 export default function AdminLayout({ children }) {
   const [isSuccess, setIsSuccess] = useState(false);
@@ -49,7 +49,7 @@ export default function AdminLayout({ children }) {
 
 export async function getUser() {
   try {
-    const { data } = await axios.get("http://localhost:5000/api/auth/me", {
+    const { data } = await api.get("/auth/me", {
       withCredentials: true, // this is absolutely essential to set the cookie in server api request
     });
 

@@ -10321,7 +10321,7 @@ ul.social-4 i:hover {
    15. Footer css
 =======================================*/
 footer.style-1 {
-  background-image: url("../images/bg/footer-bg.png");
+  /* background-image: url("../images/bg/footer-bg.png"); */
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -10599,7 +10599,7 @@ footer.style-1 .footer-list li a {
 }
 
 footer.style-3 {
-  background-image: url("../images/bg/footer-bg.png");
+  /* background-image: url("../images/bg/footer-bg.png"); */
   background: linear-gradient(180deg, rgba(145, 112, 144, 0.2) 0%, rgba(222, 139, 118, 0.2) 100%);
   background-size: cover;
   background-repeat: no-repeat;

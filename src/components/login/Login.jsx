@@ -8,6 +8,10 @@ import { toast } from "react-toastify";
 import api from "../../utils/api";
 
 const Login = () => {
+  console.log(
+    "process.env.NEXT_SERVER_API...",
+    process.env.NEXT_PUBLIC_SERVER_API
+  );
   const router = useRouter();
 
   const onFinish = async (values) => {

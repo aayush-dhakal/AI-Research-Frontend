@@ -30,9 +30,9 @@ export const AI_Research_Topics = [
     src: "/assets/images/category/infrastructure.jpg",
   },
   {
-    label: "AI Research for Conversation",
-    value: "AI Research for Conversation",
-    src: "/assets/images/category/conversation.jpg",
+    label: "AI Research for Conservation",
+    value: "AI Research for Conservation",
+    src: "/assets/images/category/conservation.jpg",
   },
   {
     label: "AI Research for Ethical AI",
