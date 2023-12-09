@@ -1,25 +1,6 @@
 import React from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import SwiperCore, { Navigation, Autoplay, EffectFade } from "swiper";
-import { useMemo } from "react";
-SwiperCore.use([Navigation, Autoplay, EffectFade]);
+
 function AboutContent() {
-  const slide = useMemo(() => {
-    return {
-      slidesPerView: "auto",
-      speed: 1500,
-      spaceBetween: 20,
-      loop: true,
-      autoplay: {
-        delay: 3000,
-        disableOnInteraction: true,
-      },
-      navigation: {
-        nextEl: ".about-us-next",
-        prevEl: ".about-us-prev",
-      },
-    };
-  });
   return (
     <section className="about-us mb-100">
       <div className="container">
@@ -36,144 +17,34 @@ function AboutContent() {
               </svg>
               <span>&nbsp;Who We Are</span>
             </div>
-            <h2>Unleashing Creativity: A Glimpse of our work's in the World</h2>
+            <h2>AI Research for Good: Exploring Technology with Purpose</h2>
           </div>
         </div>
         <div className="about-us-wrapper">
           <div className="row gy-4">
-            <div className="col-lg-6">
+            <div className="col">
               <div className="about-us-left">
                 <p>
-                  vestibulum gomat dictum, lorem nibh faucibus quam, non mattis
-                  dutoma augue ac quam. Donec placeratena nibh ac turpis cursus,
-                  ut blandit ante ullamcorper. Pellentesque lorem nisl,
-                  vehiculalut quis libero in, dignissimi fringilla odio. Vivamus
-                  congue commodo euismod. Integer ac purusantut aliquam, dapibus
-                  ipsum vel, accumsan massa. Proin imperdiet, lectusont
-                  nonprotai convallis pretium, justo dui rhoncus nunc, non
-                  vestibulum urna augue sed libero. andt Mauris sed sagittis
-                  dolor. Suspendisse europeana tincidunt purus, tristique
-                  rhoncu.
+                  AI Research for Good is a dedicated blog exploring the
+                  intersection of artificial intelligence and societal
+                  improvement. Our platform brings together thought leaders,
+                  researchers, and enthusiasts in the AI field to share
+                  insights, discoveries, and ethical discussions. We aim to
+                  illuminate the beneficial impacts of AI on society,
+                  healthcare, the environment, and more. Join our growing
+                  community to stay informed and inspired about how AI is
+                  shaping a better future.
                 </p>
-                <img src="/assets/images/about/about-left-img.jpg" alt="" />
+                {/* <img src="/assets/images/about/about-left-img.jpg" alt="" /> */}
               </div>
             </div>
-            <div className="col-lg-6">
+            {/* <div className="col-lg-6">
               <div className="about-us-right">
                 <div className="about-us-right-img">
-                  <Swiper {...slide} className="swiper about-us-slider">
-                    <div className="swiper-wrapper">
-                      <SwiperSlide className="swiper-slide">
-                        <img
-                          src="/assets/images/about/about-right-img1.jpg"
-                          alt=""
-                        />
-                      </SwiperSlide>
-                      <SwiperSlide className="swiper-slide">
-                        <img
-                          src="/assets/images/about/about-right-img2.jpg"
-                          alt=""
-                        />
-                      </SwiperSlide>
-                      <SwiperSlide className="swiper-slide">
-                        <img
-                          src="/assets/images/about/about-right-img3.jpg"
-                          alt=""
-                        />
-                      </SwiperSlide>
-                      <SwiperSlide className="swiper-slide">
-                        <img
-                          src="/assets/images/about/about-right-img4.jpg"
-                          alt=""
-                        />
-                      </SwiperSlide>
-                    </div>
-                  </Swiper>
-                  <div
-                    className="about-us-slider-btn"
-                    style={{ cursor: "pointer" }}
-                  >
-                    <div className="about-us-prev">
-                      <i className="bi bi-arrow-left" />
-                    </div>
-                    <div className="about-us-next">
-                      <i className="bi bi-arrow-right" />
-                    </div>
-                  </div>
-                </div>
-                <div className="counter-area">
-                  <div className="row g-lg-0 gy-4">
-                    <div className="col-lg-3 col-sm-3 col-6 d-flex jusify-content-sm-start justify-content-center">
-                      <div className="single-counter">
-                        <div className="icon">
-                          <img
-                            src="/assets/images/about/about-counter-icon1.svg"
-                            alt=""
-                          />
-                        </div>
-                        <div className="content">
-                          <div className="number">
-                            <h3 className="counter2">10.39</h3>
-                            <h3>k</h3>
-                          </div>
-                          <p>Perfect Posts</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-lg-3 col-sm-3 col-6 d-flex jusify-content-sm-start justify-content-center">
-                      <div className="single-counter">
-                        <div className="icon">
-                          <img
-                            src="/assets/images/about/about-counter-icon2.svg"
-                            alt=""
-                          />
-                        </div>
-                        <div className="content">
-                          <div className="number">
-                            <h3 className="counter2">19</h3>
-                            <h3>k</h3>
-                          </div>
-                          <p>Social Shares</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-lg-3 col-sm-3 col-6 d-flex jusify-content-sm-start justify-content-center">
-                      <div className="single-counter">
-                        <div className="icon">
-                          <img
-                            src="/assets/images/about/about-counter-icon3.svg"
-                            alt=""
-                          />
-                        </div>
-                        <div className="content">
-                          <div className="number">
-                            <h3 className="counter2">320</h3>
-                          </div>
-                          <p>Super Authors</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="col-lg-3 col-sm-3 col-6 d-flex jusify-content-sm-start justify-content-center">
-                      <div className="single-counter">
-                        <div className="icon">
-                          <img
-                            src="/assets/images/about/about-counter-icon4.svg"
-                            alt=""
-                          />
-                        </div>
-                        <div className="content">
-                          <div className="number">
-                            <h3 className="counter2">25.7</h3>
-                            <h3 className>k</h3>
-                          </div>
-                          <p>Daily Visitors</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <img src="/assets/images/about/about-right-img4.jpg" alt="" />
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

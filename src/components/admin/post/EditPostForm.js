@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useRef, useMemo, useContext, useEffect } from "react";
+import React, { useState, useRef, useMemo, useContext } from "react";
 import { Button, Form, Image, Input, Select } from "antd";
 import { CldUploadWidget } from "next-cloudinary";
 import { toast } from "react-toastify";
@@ -26,6 +26,7 @@ const EditPostForm = () => {
     return {
       readonly: false,
       placeholder: "Start typing...",
+      minHeight: 700,
     };
   }, []);
 
@@ -82,13 +83,7 @@ const EditPostForm = () => {
       <Form
         name="basic"
         labelCol={{
-          span: 8,
-        }}
-        wrapperCol={{
-          span: 16,
-        }}
-        style={{
-          maxWidth: 900,
+          span: 3,
         }}
         initialValues={{
           title: currentPost?.title,
@@ -168,11 +163,10 @@ const EditPostForm = () => {
 
         <Form.Item
           wrapperCol={{
-            offset: 8,
-            span: 16,
+            offset: 3,
           }}
         >
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" size="large">
             Update
           </Button>
         </Form.Item>

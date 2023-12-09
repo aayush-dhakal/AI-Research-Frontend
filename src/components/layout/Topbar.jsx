@@ -24,20 +24,20 @@ const Topbar = () => {
         <ul className="social-1">
           <li>
             <a
-              href="https://twitter.com/airesearch4good"
-              rel="noreferrer"
-              target="_blank"
-            >
-              <i className="bx bxl-twitter" />
-            </a>
-          </li>
-          <li>
-            <a
               href="https://www.linkedin.com/company/ai-research-for-good"
               rel="noreferrer"
               target="_blank"
             >
               <i className="bx bxl-linkedin" />
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://twitter.com/airesearch4good"
+              rel="noreferrer"
+              target="_blank"
+            >
+              <i className="bx bxl-twitter" />
             </a>
           </li>
           <li>

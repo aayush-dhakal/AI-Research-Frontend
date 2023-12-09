@@ -86,7 +86,7 @@ const PopularPost = () => {
                     />
                     <div className="desig">
                       <h6>
-                        <Link legacyBehavior href="/author-details">
+                        <Link legacyBehavior href={`/team/${post.user._id}`}>
                           <a>{post.user.name}</a>
                         </Link>
                       </h6>
@@ -115,7 +115,7 @@ const PopularPost = () => {
 
               {recentPosts.map((recentPost) => (
                 <div className="blog-list-1 style-five" key={recentPost._id}>
-                  <Link legacyBehavior href="/blog">
+                  <Link legacyBehavior href={`/blog/${recentPost._id}`}>
                     <a className="image">
                       <Image
                         src={recentPost.coverImage}
@@ -127,13 +127,13 @@ const PopularPost = () => {
                   </Link>
                   <div className="content">
                     <h6>
-                      <Link legacyBehavior href="/blog">
+                      <Link legacyBehavior href={`/blog/${recentPost._id}`}>
                         <a>{recentPost.title}</a>
                       </Link>
                     </h6>
                     <ul>
                       <li>
-                        <Link legacyBehavior href="/blog-standard">
+                        <Link legacyBehavior href={`/blog/${recentPost._id}`}>
                           <a>{formattedDate(recentPost.createdAt)}</a>
                         </Link>
                       </li>

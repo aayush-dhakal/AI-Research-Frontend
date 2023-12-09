@@ -10,8 +10,8 @@ export const AI_Research_Topics = [
     src: "/assets/images/category/education.jpg",
   },
   {
-    label: "AI Research Environment",
-    value: "AI Research Environment",
+    label: "AI Research for Environment",
+    value: "AI Research for Environment",
     src: "/assets/images/category/environment.jpg",
   },
   {
@@ -20,8 +20,8 @@ export const AI_Research_Topics = [
     src: "/assets/images/category/agriculture.jpg",
   },
   {
-    label: "AI Research Disaster Response",
-    value: "AI Research Disaster Response",
+    label: "AI Research for Disaster Response",
+    value: "AI Research for Disaster Response",
     src: "/assets/images/category/disaster.jpg",
   },
   {
@@ -49,4 +49,10 @@ export const formattedDate = (dateValue, smallMonth) => {
     month: smallMonth ? "short" : "long",
     day: "numeric",
   });
+};
+
+export const getYear = (dateValue) => {
+  const date = new Date(dateValue);
+
+  return date.getFullYear();
 };

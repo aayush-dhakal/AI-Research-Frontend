@@ -106,9 +106,9 @@ const BlogClassicPage = () => {
               {posts?.map((post) => (
                 <div className="col-md-6" key={post._id}>
                   <div className="blog-grid-1">
-                    <span className="eg-badge badge--white">
+                    {/* <span className="eg-badge badge--white">
                       {post.topics[0]}
-                    </span>
+                    </span> */}
                     <Link legacyBehavior href={`/blog/${post._id}`}>
                       <a className="image">
                         <Image
@@ -123,7 +123,7 @@ const BlogClassicPage = () => {
                       <ul>
                         <li>
                           <Link legacyBehavior href="/author-detail">
-                            <a>By {post.user?.name}</a>
+                            <a>Posted By {post.user?.name}</a>
                           </Link>
                         </li>
                         <li>
@@ -208,28 +208,30 @@ const BlogClassicPage = () => {
                 <h6 className="title">Stay Conected</h6>
                 <ul className="social-4">
                   <li>
-                    <a href="https://www.facebook.com/">
-                      <i className="bx bxl-facebook" />
+                    <a
+                      href="https://www.linkedin.com/company/ai-research-for-good"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      <i className="bx bxl-linkedin" />
                     </a>
                   </li>
                   <li>
-                    <a href="https://www.twitter.com/">
+                    <a
+                      href="https://twitter.com/airesearch4good"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
                       <i className="bx bxl-twitter" />
                     </a>
                   </li>
                   <li>
-                    <a href="https://www.pinterest.com/">
-                      <i className="bx bxl-pinterest-alt" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://www.instagram.com/">
+                    <a
+                      href="https://www.instagram.com/airesearchforgood"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
                       <i className="bx bxl-instagram" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://www.linkedin.com">
-                      <i className="bx bxl-linkedin" />
                     </a>
                   </li>
                 </ul>

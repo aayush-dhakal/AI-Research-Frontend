@@ -50,8 +50,8 @@ const Blog = () => {
                   </div>
                   <div className="author-content">
                     <p>
-                      By,{" "}
-                      <Link legacyBehavior href="/author-details">
+                      Posted By,{" "}
+                      <Link legacyBehavior href={`/team/${post?.user._id}`}>
                         <a>{post?.user?.name}</a>
                       </Link>
                     </p>
@@ -91,40 +91,16 @@ const Blog = () => {
                     <ul>
                       {post?.topics.map((topic, index) => (
                         <li key={index}>
-                          <Link legacyBehavior href="/blog-classic">
+                          <Link
+                            legacyBehavior
+                            href={`/blog?topic=${encodeURIComponent(topic)}`}
+                          >
                             <a>
                               <span>#</span> {topic}
                             </a>
                           </Link>
                         </li>
                       ))}
-                    </ul>
-                  </div>
-                </div>
-                <div className="col-lg-6 col-md-6 col-sm-10">
-                  <div className="social">
-                    <p>Share On:</p>
-                    <ul>
-                      <li>
-                        <a href="http://www.facebook.com">
-                          <i className="bx bxl-facebook" />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="http://www.twitter.com">
-                          <i className="bx bxl-twitter" />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="https://www.pinterest.com/">
-                          <i className="bx bxl-pinterest-alt" />
-                        </a>
-                      </li>
-                      <li>
-                        <a href="https://www.instagram.com/">
-                          <i className="bx bxl-instagram" />
-                        </a>
-                      </li>
                     </ul>
                   </div>
                 </div>

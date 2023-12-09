@@ -102,44 +102,53 @@ const AuthorDetails = () => {
               <div className="author-info">
                 <h2>{team?.name}</h2>
                 <ul className="category">
-                  <li>
-                    <a
-                      href={team?.linkedIn ?? ""}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      LinkedIn
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href={team?.ORCID ?? ""}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      ORCID
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href={team?.googleScholar ?? ""}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Google-Scholor
-                    </a>
-                  </li>
+                  {team?.linkedIn && (
+                    <li>
+                      <a
+                        href={team?.linkedIn}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        LinkedIn
+                      </a>
+                    </li>
+                  )}
+                  {team?.ORCID && (
+                    <li>
+                      <a
+                        href={team?.ORCID}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        ORCID
+                      </a>
+                    </li>
+                  )}
+                  {team?.googleScholar && (
+                    <li>
+                      <a
+                        href={team?.googleScholar}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Google-Scholor
+                      </a>
+                    </li>
+                  )}
                 </ul>
                 <p>{team?.description}</p>
-                <ul className="meta-list">
-                  <li>
-                    <img
-                      src="/assets/images/icons/total-post.svg"
-                      alt="image"
-                    />
-                    Total Post: <span>{totalBlogs}</span>
-                  </li>
-                </ul>
+
+                {totalBlogs > 0 && (
+                  <ul className="meta-list">
+                    <li>
+                      <img
+                        src="/assets/images/icons/total-post.svg"
+                        alt="image"
+                      />
+                      Blogs Posted: <span>{totalBlogs}</span>
+                    </li>
+                  </ul>
+                )}
               </div>
             </div>
 
@@ -209,151 +218,7 @@ const AuthorDetails = () => {
           </div>
 
           <div className="col-lg-4">
-            <div className="post-side-bar-1">
-              {/* <div className="sidebar-widget-1">
-                <h6 className="title">Editor Choice</h6>
-                <div className="blog-list-1 mb-25">
-                  <Link legacyBehavior href="/post-format-no-sidebar-02">
-                    <a className="image">
-                      <img
-                        src="/assets/images/blog-list/blog-list1-3.jpg"
-                        alt="image"
-                      />
-                    </a>
-                  </Link>
-                  <div className="content">
-                    <h6>
-                      <Link legacyBehavior href="/post-format-no-sidebar-02">
-                        <a>gravida orci sed jaritob laoreet tellus.</a>
-                      </Link>
-                    </h6>
-                    <ul>
-                      <li>
-                        <Link legacyBehavior href="/blog-standard">
-                          <a>Nov 10, 2022</a>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link legacyBehavior href="/blog-standard">
-                          <a>520 Comment</a>
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="blog-list-1 mb-25">
-                  <Link legacyBehavior href="/post-format-no-sidebar-02">
-                    <a className="image">
-                      <img
-                        src="/assets/images/blog-list/blog-list1-4.jpg"
-                        alt="image"
-                      />
-                    </a>
-                  </Link>
-                  <div className="content">
-                    <h6>
-                      <Link legacyBehavior href="/post-format-no-sidebar-02">
-                        <a>laoreet tellus Morbi uto dolor mattis.</a>
-                      </Link>
-                    </h6>
-                    <ul>
-                      <li>
-                        <Link legacyBehavior href="/blog-standard">
-                          <a>Nov 01, 2022</a>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link legacyBehavior href="/blog-standard">
-                          <a>854 Comment</a>
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="blog-list-1">
-                  <Link legacyBehavior href="/post-format-no-sidebar-02">
-                    <a className="image">
-                      <img
-                        src="/assets/images/blog-list/blog-list1-5.jpg"
-                        alt="image"
-                      />
-                    </a>
-                  </Link>
-                  <div className="content">
-                    <h6>
-                      <Link legacyBehavior href="/post-format-no-sidebar-02">
-                        <a>Nam ullamcorper risuso non commodo.</a>
-                      </Link>
-                    </h6>
-                    <ul>
-                      <li>
-                        <Link legacyBehavior href="/blog-standard">
-                          <a>Nov 11, 2022</a>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link legacyBehavior href="/blog-standard">
-                          <a>87 Comment</a>
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div> */}
-              <div className="sidebar-widget-1">
-                <h6 className="title">Stay Conected</h6>
-                <ul className="social-3">
-                  <li>
-                    <a href="https://www.facebook.com/">
-                      <span>
-                        <i className="bx bxl-facebook" />
-                        Facebook
-                      </span>
-                      <span>
-                        <strong>1K</strong>
-                        &nbsp;Like
-                      </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://www.twitter.com/">
-                      <span>
-                        <i className="bx bxl-twitter" />
-                        &nbsp;Twitter
-                      </span>
-                      <span>
-                        <strong>2k</strong>
-                        &nbsp;Follower
-                      </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://www.pinterest.com/">
-                      <span>
-                        <i className="bx bxl-pinterest-alt" />
-                        &nbsp;Pinterest
-                      </span>
-                      <span>
-                        <strong>2k</strong>
-                        &nbsp;Follower
-                      </span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://www.instagram.com/">
-                      <span>
-                        <i className="bx bxl-instagram" />
-                        Instagram
-                      </span>
-                      <span>
-                        <strong>1k</strong>
-                        &nbsp;Follower
-                      </span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
+            <div className="post-side-bar-1"></div>
           </div>
         </div>
       </div>

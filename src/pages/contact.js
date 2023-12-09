@@ -10,54 +10,38 @@ const contact = () => {
             <div className="contact-box">
               <div className="title">
                 <h3>Contact Us</h3>
-                <p>
-                  Morbi quis elementum ex, id commodo odio. In maximus, augue
-                  europea vestibulum gomat.{" "}
-                </p>
+                <p>We will get back to you soon.</p>
               </div>
               <div className="left-social">
                 <ul>
                   <li>
-                    <a href="https://www.facebook.com/">
-                      <i className="bx bxl-facebook" />
+                    <a
+                      href="https://www.linkedin.com/company/ai-research-for-good"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
+                      <i className="bx bxl-linkedin" />
                     </a>
                   </li>
                   <li>
-                    <a href="https://www.twitter.com/">
+                    <a
+                      href="https://twitter.com/airesearch4good"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
                       <i className="bx bxl-twitter" />
                     </a>
                   </li>
                   <li>
-                    <a href="https://www.pinterest.com/">
-                      <i className="bx bxl-pinterest-alt" />
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://www.instagram.com/">
+                    <a
+                      href="https://www.instagram.com/airesearchforgood"
+                      rel="noreferrer"
+                      target="_blank"
+                    >
                       <i className="bx bxl-instagram" />
                     </a>
                   </li>
                 </ul>
-              </div>
-              <div className="informations">
-                <div className="single-info">
-                  <div className="icon">
-                    <i className="bi bi-telephone-fill" />
-                  </div>
-                  <div className="info">
-                    <a href="tel:05661111985">+880 566 1111 985</a>
-                    <a href="tel:06571111576">+880 657 1111 576</a>
-                  </div>
-                </div>
-                <div className="single-info">
-                  <div className="icon">
-                    <i className="bi bi-envelope" />
-                  </div>
-                  <div className="info">
-                    <a href="mailto: info@example.com">info@example.com</a>
-                    <a href="mailto: info@support.com">info@support.com</a>
-                  </div>
-                </div>
               </div>
             </div>
           </div>

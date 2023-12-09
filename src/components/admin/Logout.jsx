@@ -13,7 +13,7 @@ const Logout = () => {
         withCredentials: true, // this is absolutely essential to set the cookie in browser
       });
       toast.success("You are logged out");
-      router.push("");
+      router.push("/login");
     } catch (error) {
       console.error(error);
       toast.error("Error logging out");

@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import ReactPaginate from "react-paginate";
 import TeamContext from "@/context/team/TeamContext";
-import { formattedDate } from "@/utils/helpers";
+import { getYear } from "@/utils/helpers";
 
 function Author() {
   const { teams, getTeams, totalTeams } = useContext(TeamContext);
@@ -59,6 +59,7 @@ function Author() {
     <section className="author-section pt-100 pb-100">
       <div className="container">
         <div className="row g-4 mb-60">
+          <h1 className="text-center">Our Team</h1>
           {teams?.map((team) => (
             <div className="col-lg-3 col-md-6 col-sm-6" key={team._id}>
               <div className="author-1">
@@ -73,59 +74,56 @@ function Author() {
                     />
                   </Link>
                   <h4>{team.name}</h4>
+                  <div>{team.description}</div>
                   <ul>
-                    <li>
-                      <span>Post</span>
-                      <span>{team.numberOfPosts}</span>
-                    </li>
+                    {team.numberOfPosts > 0 && (
+                      <li>
+                        <span>Blogs Posted</span>
+                        <span>{team.numberOfPosts}</span>
+                      </li>
+                    )}
                     {/* <li>
                       <span>Email</span>
                       <span>{team.email}</span>
                     </li> */}
                     <li>
                       <span>Joined</span>
-                      <span>{formattedDate(team.createdAt, true)}</span>
+                      <span>{getYear(team.createdAt)}</span>
                     </li>
                   </ul>
                 </div>
                 <div className="author-back">
                   <ul className="social-list">
-                    <li>
-                      <a href={team.googleScholar}>
-                        <span>
-                          <i className="bx bxl-google" />
-                          Google Scholor
-                        </span>
-                      </a>
-                    </li>
-                    {/* <li>
-                      <a href="https://www.twitter.com/">
-                        <span>
-                          <i className="bx bxl-twitter" />
-                          Twitter
-                        </span>
-                        <span>
-                          <strong>60k</strong>
-                          &nbsp;Follower
-                        </span>
-                      </a>
-                    </li> */}
-                    <li>
-                      <a href={team.linkedIn}>
-                        <span>
-                          <i className="bx bxl-linkedin" />
-                          LinkedIn
-                        </span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href={team.ORCID}>
-                        <span>
-                          <i className="bx bi-archive" />
-                          ORCID
-                        </span>
-                      </a>
-                    </li>
+                    {team.googleScholar && (
+                      <li>
+                        <a href={team.googleScholar}>
+                          <span>
+                            <i className="bx bxl-google" />
+                            Google Scholor
+                          </span>
+                        </a>
+                      </li>
+                    )}
+                    {team.linkedIn && (
+                      <li>
+                        <a href={team.linkedIn}>
+                          <span>
+                            <i className="bx bxl-linkedin" />
+                            LinkedIn
+                          </span>
+                        </a>
+                      </li>
+                    )}
+                    {team.ORCID && (
+                      <li>
+                        <a href={team.ORCID}>
+                          <span>
+                            <i className="bx bi-archive" />
+                            ORCID
+                          </span>
+                        </a>
+                      </li>
+                    )}
                   </ul>
                   <Link legacyBehavior href={`/team/${team._id}`}>
                     <a className="eg-btn arrow-btn four">

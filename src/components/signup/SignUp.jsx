@@ -143,27 +143,6 @@ const SignUp = () => {
         </Form.Item>
       </Form.Item>
 
-      <Form.Item label="Description">
-        <Form.Item
-          name="description"
-          noStyle
-          rules={[
-            {
-              required: true,
-              message: "Description is required",
-            },
-          ]}
-        >
-          <TextArea
-            style={{
-              width: 400,
-              height: 100,
-            }}
-            placeholder="Please enter your description"
-          />
-        </Form.Item>
-      </Form.Item>
-
       <Form.Item label="Your Image">
         <CldUploadWidget
           uploadPreset="aniket-research"
@@ -186,6 +165,27 @@ const SignUp = () => {
             <Image width={200} src={userImage} />
           </div>
         )}
+      </Form.Item>
+
+      <Form.Item label="Description">
+        <Form.Item
+          name="description"
+          noStyle
+          rules={[
+            {
+              required: true,
+              message: "Description is required",
+            },
+          ]}
+        >
+          <TextArea
+            style={{
+              width: 400,
+              height: 100,
+            }}
+            placeholder="Please enter your description"
+          />
+        </Form.Item>
       </Form.Item>
 
       <Form.Item label="GoogleScholar">

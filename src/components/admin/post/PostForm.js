@@ -23,7 +23,7 @@ const PostForm = () => {
     return {
       readonly: false,
       placeholder: "Start typing...",
-      minHeight: 500,
+      minHeight: 700,
     };
   }, []);
 
@@ -68,14 +68,19 @@ const PostForm = () => {
       </div>
       <Form
         name="basic"
+        layout="horizontal"
         labelCol={{
-          span: 8,
+          span: 3,
         }}
-        wrapperCol={{
-          span: 16,
-        }}
+        labelAlign="right"
+        // labelCol={{
+        //   span: 8,
+        // }}
+        // wrapperCol={{
+        //   span: 18,
+        // }}
         style={{
-          maxWidth: 900,
+          maxWidth: "100vw",
         }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
@@ -154,11 +159,10 @@ const PostForm = () => {
 
         <Form.Item
           wrapperCol={{
-            offset: 8,
-            span: 16,
+            offset: 3,
           }}
         >
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" size="large">
             Submit
           </Button>
         </Form.Item>

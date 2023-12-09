@@ -1,3 +1,4 @@
+import React from "react";
 import Logout from "@/components/admin/Logout";
 import { Button } from "antd";
 import Link from "next/link";

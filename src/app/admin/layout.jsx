@@ -1,10 +1,12 @@
 "use client";
 
+import React from "react";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import TeamState from "@/context/team/TeamState";
 import PostState from "@/context/post/PostState";
+import { toast } from "react-toastify";
 
 export default function AdminLayout({ children }) {
   const [isSuccess, setIsSuccess] = useState(false);
@@ -21,7 +23,8 @@ export default function AdminLayout({ children }) {
       }
 
       if (user.role !== "admin") {
-        router.push("");
+        toast.warning("Your role is not an admin");
+        router.push("/login");
         return;
       }
 

@@ -127,19 +127,6 @@ function CommonFooter() {
             <ul className="social-2">
               <li>
                 <a
-                  href="https://twitter.com/airesearch4good"
-                  rel="noreferrer"
-                  target="_blank"
-                >
-                  <div className="icon">
-                    <i className="bx bxl-twitter" />
-                    <span>T</span>
-                  </div>
-                  <p>Twitter</p>
-                </a>
-              </li>
-              <li>
-                <a
                   href="https://www.linkedin.com/company/ai-research-for-good"
                   rel="noreferrer"
                   target="_blank"
@@ -151,6 +138,20 @@ function CommonFooter() {
                   <p>LinkedIn</p>
                 </a>
               </li>
+              <li>
+                <a
+                  href="https://twitter.com/airesearch4good"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <div className="icon">
+                    <i className="bx bxl-twitter" />
+                    <span>T</span>
+                  </div>
+                  <p>Twitter</p>
+                </a>
+              </li>
+
               <li>
                 <a
                   href="https://www.instagram.com/airesearchforgood"
