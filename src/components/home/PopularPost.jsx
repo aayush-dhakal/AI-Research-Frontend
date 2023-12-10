@@ -43,6 +43,16 @@ const PopularPost = () => {
   return (
     <section className="popular-post-section mt-5">
       <div className="container">
+        <div className="mb-5">
+          <Image
+            src="/assets/images/home/welcome.png"
+            alt="Welcome image"
+            width={0}
+            height={0}
+            sizes="100vw"
+            style={{ width: "100%", height: "auto" }}
+          />
+        </div>
         <div className="row gy-3 mb-30">
           <div className="col-sm-8">
             <div className="section-title-4 style-3">

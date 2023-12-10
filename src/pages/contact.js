@@ -10,7 +10,18 @@ const contact = () => {
             <div className="contact-box">
               <div className="title">
                 <h3>Contact Us</h3>
-                <p>We will get back to you soon.</p>
+                <div>We will get back to you soon.</div>
+                <p className="mt-2">
+                  <i className="bi bi-envelope-fill" />
+                  <span
+                    style={{
+                      marginLeft: "0.5rem",
+                      fontWeight: "bold",
+                    }}
+                  >
+                    contact@airesearchforgood.org
+                  </span>
+                </p>
               </div>
               <div className="left-social">
                 <ul>
@@ -47,7 +58,7 @@ const contact = () => {
           </div>
           <div className="col-lg-7">
             <div className="form-title">
-              <h2>Have Any Questions</h2>
+              <h2>Send Us An Email</h2>
             </div>
 
             <ContactForm />

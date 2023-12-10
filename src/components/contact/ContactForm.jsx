@@ -1,5 +1,5 @@
-import axios from "axios";
 import React, { useState } from "react";
+import axios from "axios";
 import { toast } from "react-toastify";
 
 const ContactForm = () => {
@@ -18,7 +18,7 @@ const ContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    var data = {
+    const data = {
       service_id: serviceId,
       template_id: templateId,
       user_id: publicKey,
@@ -33,10 +33,10 @@ const ContactForm = () => {
     // send the email with the library provided rest api
     try {
       await axios.post(emailAPI, data);
+      toast.success("Email sent");
       setName("");
       setEmail("");
       setMessage("");
-      toast.success("Email sent");
     } catch (error) {
       console.log(error);
       toast.error("Error sending email");

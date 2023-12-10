@@ -1,8 +1,8 @@
 "use client";
 import { Button } from "antd";
 import { useRouter } from "next/navigation";
-import api from "@/utils/api";
 import { toast } from "react-toastify";
+import api from "@/utils/api";
 
 const Logout = () => {
   const router = useRouter();
@@ -19,6 +19,7 @@ const Logout = () => {
       toast.error("Error logging out");
     }
   };
+
   return (
     <div>
       <Button onClick={handleLogout}>Logout</Button>

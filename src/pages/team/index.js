@@ -75,6 +75,7 @@ function Author() {
                   </Link>
                   <h4>{team.name}</h4>
                   <div>{team.description}</div>
+                  <div>{team.email}</div>
                   <ul>
                     {team.numberOfPosts > 0 && (
                       <li>
