@@ -9,7 +9,7 @@ const Logout = () => {
 
   const handleLogout = async () => {
     try {
-      await api.get("/auth/logout", {
+      await api.post("/auth/logout", {
         withCredentials: true, // this is absolutely essential to set the cookie in browser
       });
       toast.success("You are logged out");
