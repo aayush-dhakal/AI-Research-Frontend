@@ -19,6 +19,11 @@ export const getTeamColumns = (handleDeleteTeam, handleEditTeam) => {
       key: "role",
     },
     {
+      title: "Blogs Posted",
+      dataIndex: "numberOfPosts",
+      key: "blogPosted",
+    },
+    {
       title: "Image",
       dataIndex: "image",
       key: "image",
