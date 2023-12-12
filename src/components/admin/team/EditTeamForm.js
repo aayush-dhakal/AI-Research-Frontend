@@ -6,9 +6,12 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import TeamContext from "@/context/team/TeamContext";
+import useUserToken from "@/hooks/useUserToken";
 
 const EditTeamForm = () => {
   const router = useRouter();
+
+  const userToken = useUserToken();
 
   const { currentTeam, updateTeam, setCurrentTeam } = useContext(TeamContext);
 
@@ -27,7 +30,10 @@ const EditTeamForm = () => {
   };
 
   const onFinish = async (values) => {
-    updateTeam({ id: currentTeam?._id, image: teamImage, ...values });
+    updateTeam(
+      { id: currentTeam?._id, image: teamImage, ...values },
+      userToken
+    );
     router.push("/admin/teams");
     setCurrentTeam(null);
   };

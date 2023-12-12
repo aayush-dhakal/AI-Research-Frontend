@@ -5,15 +5,18 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import PostContext from "@/context/post/PostContext";
 import { getPostColumns } from "@/utils/table/postColumns";
+import useUserToken from "@/hooks/useUserToken";
 
 const Posts = () => {
   const router = useRouter();
+
+  const userToken = useUserToken();
 
   const { posts, getPosts, deletePost, setCurrentPost, totalPosts } =
     useContext(PostContext);
 
   const handleDeletePost = (id) => {
-    deletePost(id);
+    deletePost(id, userToken);
   };
 
   const handleEditAuthor = (post) => {

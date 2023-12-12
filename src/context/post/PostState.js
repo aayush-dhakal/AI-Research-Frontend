@@ -46,10 +46,13 @@ const PostState = (props) => {
   };
 
   // add post
-  const addPost = async (post) => {
+  const addPost = async (post, userToken) => {
     try {
       const res = await api.post("/post", post, {
-        withCredentials: true, // this is absolutely essential to set the cookie in browser
+        // withCredentials: true, // this is absolutely essential to set the cookie in browser
+        headers: {
+          authorization: `Bearer ${userToken}`,
+        },
       });
 
       dispatch({ type: ADD_POST, payload: res.data?.data });
@@ -61,10 +64,13 @@ const PostState = (props) => {
   };
 
   // update post
-  const updatePost = async (post) => {
+  const updatePost = async (post, userToken) => {
     try {
       const res = await api.put(`/post/${post.id}`, post, {
-        withCredentials: true, // this is absolutely essential to set the cookie in browser
+        // withCredentials: true, // this is absolutely essential to set the cookie in browser
+        headers: {
+          authorization: `Bearer ${userToken}`,
+        },
       });
 
       dispatch({ type: UPDATE_POST, payload: res.data?.data });
@@ -76,10 +82,12 @@ const PostState = (props) => {
   };
 
   // delete post
-  const deletePost = async (id) => {
+  const deletePost = async (id, userToken) => {
     try {
       await api.delete(`/post/${id}`, {
-        withCredentials: true, // this is absolutely essential to set the cookie in browser
+        headers: {
+          authorization: `Bearer ${userToken}`,
+        },
       });
 
       dispatch({ type: DELETE_POST, payload: id });

@@ -12,9 +12,12 @@ const Login = () => {
 
   const onFinish = async (values) => {
     try {
-      await api.post("/auth/login", values, {
-        withCredentials: true, // this is absolutely essential to set the cookie in browser
+      const res = await api.post("/auth/login", values, {
+        // withCredentials: true, // this is absolutely essential to set the cookie in browser
       });
+
+      localStorage.setItem("token", JSON.stringify(res.data.token));
+
       router.push("/admin");
       toast.success("Login Success");
     } catch (error) {

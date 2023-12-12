@@ -1,38 +1,39 @@
 "use client";
-
-import React from "react";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import TeamState from "@/context/team/TeamState";
 import PostState from "@/context/post/PostState";
 import { toast } from "react-toastify";
 import api from "../../utils/api";
+import useUserToken from "@/hooks/useUserToken";
 
 export default function AdminLayout({ children }) {
   const [isSuccess, setIsSuccess] = useState(false);
+  const userToken = useUserToken();
 
   const router = useRouter();
 
   useEffect(() => {
-    (async () => {
-      const { user, error } = await getUser();
+    if (userToken) {
+      (async () => {
+        const { user, error } = await getUser(userToken);
 
-      if (error) {
-        router.push("/login");
-        return;
-      }
+        if (error) {
+          router.push("/login");
+          return;
+        }
 
-      if (user.role !== "admin") {
-        toast.warning("Your role is not an admin");
-        router.push("/login");
-        return;
-      }
+        if (user.role !== "admin") {
+          toast.warning("Your role is not an admin");
+          router.push("/login");
+          return;
+        }
 
-      localStorage.setItem("userId", user._id);
-
-      setIsSuccess(true);
-    })();
-  });
+        localStorage.setItem("userId", user._id);
+        setIsSuccess(true);
+      })();
+    }
+  }, [userToken, router]); // Depend on userToken to trigger this effect
 
   if (!isSuccess) {
     return <p>Loading.....</p>;
@@ -47,10 +48,12 @@ export default function AdminLayout({ children }) {
   );
 }
 
-export async function getUser() {
+export async function getUser(userToken) {
   try {
     const { data } = await api.get("/auth/me", {
-      withCredentials: true, // this is absolutely essential to set the cookie in server api request
+      headers: {
+        authorization: `Bearer ${userToken}`,
+      },
     });
 
     return {
@@ -58,6 +61,7 @@ export async function getUser() {
       error: null,
     };
   } catch (error) {
+    console.error("Error in getUser:", error);
     return {
       user: null,
       error,

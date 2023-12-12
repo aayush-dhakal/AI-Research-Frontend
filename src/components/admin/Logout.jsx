@@ -2,16 +2,18 @@
 import { Button } from "antd";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
-import api from "@/utils/api";
 
 const Logout = () => {
   const router = useRouter();
 
   const handleLogout = async () => {
     try {
-      await api.post("/auth/logout", {
-        withCredentials: true, // this is absolutely essential to set the cookie in browser
-      });
+      // await api.post("/auth/logout", {
+      //   // withCredentials: true, // this is absolutely essential to set the cookie in browser
+      // });
+
+      localStorage.removeItem("token");
+
       toast.success("You are logged out");
       router.push("/login");
     } catch (error) {

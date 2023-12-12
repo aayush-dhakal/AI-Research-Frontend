@@ -8,9 +8,12 @@ import Link from "next/link";
 import JoditEditor from "jodit-react";
 import { AI_Research_Topics } from "@/utils/helpers";
 import PostContext from "@/context/post/PostContext";
+import useUserToken from "@/hooks/useUserToken";
 
 const EditPostForm = () => {
   const router = useRouter();
+
+  const userToken = useUserToken();
 
   const { currentPost, updatePost, setCurrentPost } = useContext(PostContext);
 
@@ -54,14 +57,17 @@ const EditPostForm = () => {
       return;
     }
 
-    updatePost({
-      id: currentPost?._id,
-      ...values,
-      description: content,
-      topics,
-      user: localStorage.getItem("userId"),
-      coverImage,
-    });
+    updatePost(
+      {
+        id: currentPost?._id,
+        ...values,
+        description: content,
+        topics,
+        user: localStorage.getItem("userId"),
+        coverImage,
+      },
+      userToken
+    );
     router.push("/admin/posts");
     setCurrentPost(null);
   };

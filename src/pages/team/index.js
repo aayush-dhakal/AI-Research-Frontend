@@ -12,7 +12,7 @@ function Author() {
 
   const generalTeamsSort = {
     sortBy: "createdAt",
-    sortOrder: "desc",
+    sortOrder: "asc",
   };
 
   const [paginationConfig, setPaginationConfig] = useState({

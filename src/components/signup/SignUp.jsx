@@ -31,13 +31,13 @@ const SignUp = () => {
     }
 
     try {
-      await api.post(
-        "/auth/register",
-        { ...values, image: userImage },
-        {
-          withCredentials: true, // this is absolutely essential to set the cookie in browser
-        }
-      );
+      const res = await api.post("/auth/register", {
+        ...values,
+        image: userImage,
+      });
+
+      localStorage.setItem("token", JSON.stringify(res.data.token));
+
       router.push("/login");
       toast.success("Registration Success");
     } catch (error) {

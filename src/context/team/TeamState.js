@@ -57,10 +57,13 @@ const TeamState = (props) => {
   // };
 
   // update team
-  const updateTeam = async (team) => {
+  const updateTeam = async (team, userToken) => {
     try {
       const res = await api.put(`/auth/user/${team.id}`, team, {
-        withCredentials: true, // this is absolutely essential to set the cookie in browser
+        // withCredentials: true, // this is absolutely essential to set the cookie in browser
+        headers: {
+          authorization: `Bearer ${userToken}`,
+        },
       });
 
       dispatch({ type: UPDATE_TEAM, payload: res.data?.data });
@@ -73,10 +76,12 @@ const TeamState = (props) => {
   };
 
   // delete team
-  const deleteTeam = async (id) => {
+  const deleteTeam = async (id, userToken) => {
     try {
       await api.delete(`/auth/user/${id}`, {
-        withCredentials: true, // this is absolutely essential to set the cookie in browser
+        headers: {
+          authorization: `Bearer ${userToken}`,
+        },
       });
 
       dispatch({ type: DELETE_TEAM, payload: id });

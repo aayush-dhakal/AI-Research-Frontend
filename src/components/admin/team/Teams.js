@@ -6,15 +6,18 @@ import { useRouter } from "next/navigation";
 import { Button, Table } from "antd";
 import TeamContext from "@/context/team/TeamContext";
 import { getTeamColumns } from "@/utils/table/teamColumns";
+import useUserToken from "@/hooks/useUserToken";
 
 const Teams = () => {
   const router = useRouter();
+
+  const userToken = useUserToken();
 
   const { teams, getTeams, deleteTeam, setCurrentTeam, totalTeams } =
     useContext(TeamContext);
 
   const handleDeleteTeam = (id) => {
-    deleteTeam(id);
+    deleteTeam(id, userToken);
   };
 
   const handleEditTeam = (team) => {
