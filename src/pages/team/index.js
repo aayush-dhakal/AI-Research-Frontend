@@ -97,7 +97,11 @@ function Author() {
                   <ul className="social-list">
                     {team.googleScholar && (
                       <li>
-                        <a href={team.googleScholar}>
+                        <a
+                          href={team.googleScholar}
+                          rel="noreferrer"
+                          target="_blank"
+                        >
                           <span>
                             <i className="bx bxl-google" />
                             Google Scholor
@@ -107,7 +111,11 @@ function Author() {
                     )}
                     {team.linkedIn && (
                       <li>
-                        <a href={team.linkedIn}>
+                        <a
+                          href={team.linkedIn}
+                          rel="noreferrer"
+                          target="_blank"
+                        >
                           <span>
                             <i className="bx bxl-linkedin" />
                             LinkedIn
@@ -117,7 +125,7 @@ function Author() {
                     )}
                     {team.ORCID && (
                       <li>
-                        <a href={team.ORCID}>
+                        <a href={team.ORCID} rel="noreferrer" target="_blank">
                           <span>
                             <i className="bx bi-archive" />
                             ORCID
