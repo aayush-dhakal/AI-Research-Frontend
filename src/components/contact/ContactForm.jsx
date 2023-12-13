@@ -53,6 +53,7 @@ const ContactForm = () => {
                 type="text"
                 placeholder="Enter Your Name"
                 name="name"
+                required
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
@@ -64,6 +65,7 @@ const ContactForm = () => {
                 type="email"
                 placeholder="Enter your email"
                 name="email"
+                required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -75,6 +77,7 @@ const ContactForm = () => {
                 rows={5}
                 placeholder="Enter Your Messege"
                 name="message"
+                required
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
               />
