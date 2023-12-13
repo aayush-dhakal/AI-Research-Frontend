@@ -35,16 +35,16 @@ export default function App({ Component, pageProps }) {
           />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
           <link rel="icon" href="/assets/favicon-ai.ico" />
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-X3HG5FNSXP"
+          ></script>
+          <script>
+            window.dataLayer = window.dataLayer || []; function gtag()
+            {dataLayer.push(arguments)}
+            gtag('js', new Date()); gtag('config', 'G-X3HG5FNSXP');
+          </script>
         </Head>
-        <script
-          async
-          src="https://www.googletagmanager.com/gtag/js?id=G-X3HG5FNSXP"
-        ></script>
-        <script>
-          window.dataLayer = window.dataLayer || []; function gtag()
-          {dataLayer.push(arguments)}
-          gtag('js', new Date()); gtag('config', 'G-X3HG5FNSXP');
-        </script>
         <Component {...pageProps} />;
         <SmoothPageScroll />
       </>
