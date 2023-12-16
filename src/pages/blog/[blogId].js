@@ -23,14 +23,18 @@ const Blog = () => {
   };
 
   useEffect(() => {
-    getPost();
+    blogId && getPost();
   }, [blogId]);
 
   return (
     <>
       <section
         className="post-format-inner-banner mb-100"
-        style={{ backgroundImage: `url(${post?.coverImage})` }}
+        style={{
+          backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.527), rgba(0, 0, 0, 0.5)), url(${post?.coverImage})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
       >
         <div className="container">
           <div className="row">

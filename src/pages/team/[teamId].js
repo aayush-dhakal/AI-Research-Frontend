@@ -82,8 +82,8 @@ const AuthorDetails = () => {
   }, []);
 
   useEffect(() => {
-    getTeam();
-    getPostsForTeam(1); // on first render setting current page to 1
+    teamId && getTeam();
+    teamId && getPostsForTeam(1); // on first render setting current page to 1
   }, [teamId]);
 
   return (
