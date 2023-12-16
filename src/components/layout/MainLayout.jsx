@@ -5,6 +5,7 @@ import Topbar from "./Topbar";
 import Head from "next/head";
 import TeamState from "@/context/team/TeamState";
 import PostState from "@/context/post/PostState";
+import Script from "next/script";
 const initalState = {
   isRightSidebarOpen: false,
   isleftSidebarOpen: false,
@@ -69,6 +70,17 @@ function MainLayout({ children }) {
         {/* <link rel="icon" href="/assets/favicon-ai.ico" /> */}
         <link rel="icon" href="/assets/images/company-logo/black-logo.png" />
       </Head>
+
+      <Script src="https://www.googletagmanager.com/gtag/js?id=G-X3HG5FNSXP" />
+      <Script id="google-analytics">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+ 
+          gtag('config', 'G-X3HG5FNSXP');
+        `}
+      </Script>
 
       <TeamState>
         <PostState>
