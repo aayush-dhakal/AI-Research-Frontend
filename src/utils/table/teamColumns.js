@@ -30,6 +30,11 @@ export const getTeamColumns = (handleDeleteTeam, handleEditTeam) => {
       render: (_, { image }) => <Image src={image} width={50} />,
     },
     {
+      title: "Display Order",
+      dataIndex: "order",
+      key: "order",
+    },
+    {
       title: "Google Scholar",
       dataIndex: "googleScholar",
       key: "googleScholar",

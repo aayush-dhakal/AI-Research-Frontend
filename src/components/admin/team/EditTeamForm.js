@@ -66,6 +66,7 @@ const EditTeamForm = () => {
         initialValues={{
           name: currentTeam?.name,
           description: currentTeam?.description,
+          order: currentTeam?.order,
           googleScholar: currentTeam?.googleScholar,
           linkedIn: currentTeam?.linkedIn,
           ORCID: currentTeam?.ORCID,
@@ -99,6 +100,10 @@ const EditTeamForm = () => {
           ]}
         >
           <Input.TextArea rows={6} />
+        </Form.Item>
+
+        <Form.Item label="Order" name="order">
+          <Input />
         </Form.Item>
 
         <Form.Item label="Google Scholar" name="googleScholar">

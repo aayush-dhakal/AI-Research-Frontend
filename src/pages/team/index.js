@@ -11,7 +11,7 @@ function Author() {
   const numberOfTeamsPerPage = 16;
 
   const generalTeamsSort = {
-    sortBy: "createdAt",
+    sortBy: "order",
     sortOrder: "asc",
   };
 
