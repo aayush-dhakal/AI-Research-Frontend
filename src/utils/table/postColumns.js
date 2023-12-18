@@ -11,7 +11,7 @@ export const getPostColumns = (handleDeletePost, handleEditAuthor) => {
       key: "title",
     },
     {
-      title: "Author",
+      title: "Posted By",
       dataIndex: ["user", "name"],
       key: "author",
     },
