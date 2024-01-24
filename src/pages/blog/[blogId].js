@@ -34,7 +34,6 @@ const Blog = () => {
       <Head>
         <title>{post?.title} | AI Research</title>
         <meta property="og:title" content={post?.title} />
-        <meta property="og:description" content={post?.description} />
         <meta property="og:image" content={post?.coverImage} />
       </Head>
 
