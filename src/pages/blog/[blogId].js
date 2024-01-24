@@ -27,6 +27,8 @@ const Blog = () => {
     blogId && getPost();
   }, [blogId]);
 
+  if (!post) return;
+
   return (
     <>
       <Head>
