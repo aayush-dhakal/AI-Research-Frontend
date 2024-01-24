@@ -32,9 +32,10 @@ const Blog = () => {
   return (
     <>
       <Head>
-        <title>{post?.title} | AI Research</title>
-        <meta property="og:title" content={post?.title} />
-        <meta property="og:image" content={post?.coverImage} />
+        <title>{post.title} | AI Research</title>
+
+        <meta property="og:title" content={post?.title} key="title" />
+        <meta property="og:image" content={post?.coverImage} key="coverImage" />
       </Head>
 
       <section

@@ -62,6 +62,7 @@ function MainLayout({ children }) {
     <>
       <Head>
         <title>AI Research For Good</title>
+        <meta property="og:title" content="AI Research For Good" key="title" />
         <meta
           name="description"
           content="AI Research For Good is AI Research For Good Bloogs"
