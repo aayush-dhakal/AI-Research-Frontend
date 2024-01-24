@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import api from "../../utils/api";
 import Image from "next/image";
 import { formattedDate } from "@/utils/helpers";
+import Head from "next/head";
 
 const Blog = () => {
   const router = useRouter();
@@ -28,6 +29,20 @@ const Blog = () => {
 
   return (
     <>
+      <Head>
+        <title>{post?.title}</title>
+        <meta property="og:title" content={post?.title} />
+        <meta property="og:description" content={post?.description} />
+        <meta property="og:image" content={post?.coverImage} />
+        <meta
+          property="og:url"
+          content={`https://www.yourwebsite.com/blog/${blogId}`}
+        />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/assets/images/company-logo/black-logo.png" />
+      </Head>
+
       <section
         className="post-format-inner-banner mb-100"
         style={{

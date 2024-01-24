@@ -73,46 +73,54 @@ const PopularPost = () => {
         </div>
         <div className="row">
           <div className="col-lg-8">
-            {posts.map((post) => (
-              <div className="blog-list-4 mb-30" key={post._id}>
-                <Link legacyBehavior href={`/blog/${post._id}`}>
-                  <a className="image">
-                    <Image
-                      src={post.coverImage}
-                      alt="image"
-                      width={250}
-                      height={189}
-                      // style={{ maxHeight: "189px", minWidth: "250px" }}
-                    />
-                  </a>
-                </Link>
-                <div className="content">
-                  <div className="author">
-                    <Image
-                      src={post.user.image}
-                      alt="image"
-                      width={39}
-                      height={39}
-                    />
-                    <div className="desig">
-                      <h6>
-                        <Link legacyBehavior href={`/team/${post.user._id}`}>
-                          <a>{post.user.name}</a>
+            {posts.map((post) => {
+              const blogDetailUrl = `/blog/${
+                post._id
+              }?title=${post.title.replace(/\s+/g, "-")}`;
+
+              return (
+                <div className="blog-list-4 mb-30" key={post._id}>
+                  <Link legacyBehavior href={blogDetailUrl}>
+                    <a className="image">
+                      <Image
+                        src={post.coverImage}
+                        alt="image"
+                        width={250}
+                        height={189}
+                        // style={{ maxHeight: "189px", minWidth: "250px" }}
+                      />
+                    </a>
+                  </Link>
+                  <div className="content">
+                    <div className="author">
+                      <Image
+                        src={post.user.image}
+                        alt="image"
+                        width={39}
+                        height={39}
+                      />
+                      <div className="desig">
+                        <h6>
+                          <Link legacyBehavior href={`/team/${post.user._id}`}>
+                            <a>{post.user.name}</a>
+                          </Link>
+                        </h6>
+                        <Link legacyBehavior href={blogDetailUrl}>
+                          <a className="date">
+                            {formattedDate(post.createdAt)}
+                          </a>
                         </Link>
-                      </h6>
-                      <Link legacyBehavior href={`/blog/${post._id}`}>
-                        <a className="date">{formattedDate(post.createdAt)}</a>
-                      </Link>
+                      </div>
                     </div>
+                    <h4>
+                      <Link legacyBehavior href={blogDetailUrl}>
+                        <a>{post.title}</a>
+                      </Link>
+                    </h4>
                   </div>
-                  <h4>
-                    <Link legacyBehavior href={`/blog/${post._id}`}>
-                      <a>{post.title}</a>
-                    </Link>
-                  </h4>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
           <div className="col-lg-4">
             <div className="popular-list-wrapper mb-30">
@@ -123,34 +131,40 @@ const PopularPost = () => {
                 <h6>Don’t Miss</h6>
               </div>
 
-              {recentPosts.map((recentPost) => (
-                <div className="blog-list-1 style-five" key={recentPost._id}>
-                  <Link legacyBehavior href={`/blog/${recentPost._id}`}>
-                    <a className="image">
-                      <Image
-                        src={recentPost.coverImage}
-                        alt="image"
-                        width={103}
-                        height={97}
-                      />
-                    </a>
-                  </Link>
-                  <div className="content">
-                    <h6>
-                      <Link legacyBehavior href={`/blog/${recentPost._id}`}>
-                        <a>{recentPost.title}</a>
-                      </Link>
-                    </h6>
-                    <ul>
-                      <li>
-                        <Link legacyBehavior href={`/blog/${recentPost._id}`}>
-                          <a>{formattedDate(recentPost.createdAt)}</a>
+              {recentPosts.map((recentPost) => {
+                const blogDetailUrl = `/blog/${
+                  recentPost._id
+                }?title=${recentPost.title.replace(/\s+/g, "-")}`;
+
+                return (
+                  <div className="blog-list-1 style-five" key={recentPost._id}>
+                    <Link legacyBehavior href={blogDetailUrl}>
+                      <a className="image">
+                        <Image
+                          src={recentPost.coverImage}
+                          alt="image"
+                          width={103}
+                          height={97}
+                        />
+                      </a>
+                    </Link>
+                    <div className="content">
+                      <h6>
+                        <Link legacyBehavior href={blogDetailUrl}>
+                          <a>{recentPost.title}</a>
                         </Link>
-                      </li>
-                    </ul>
+                      </h6>
+                      <ul>
+                        <li>
+                          <Link legacyBehavior href={blogDetailUrl}>
+                            <a>{formattedDate(recentPost.createdAt)}</a>
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
               <div className="list-footer">
                 <Link legacyBehavior href="/blog">
                   <a>View All Post</a>

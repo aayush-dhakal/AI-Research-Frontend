@@ -60,37 +60,43 @@ function CommonFooter() {
           </div>
           <div className="col-xl-4 col-lg-5 col-md-6">
             <h4 className="footer-title">Top Article This Week</h4>
-            {recentPosts?.map((post, index) => (
-              <div
-                className={`blog-list-1 ${index === 0 && "mb-25"}`}
-                key={post._id}
-              >
-                <Link legacyBehavior href={`/blog/${post._id}`}>
-                  <a className="image">
-                    <Image
-                      src={post.coverImage}
-                      alt="image"
-                      width={110}
-                      height={75}
-                    />
-                  </a>
-                </Link>
-                <div className="content">
-                  <h6>
-                    <Link legacyBehavior href={`/blog/${post._id}`}>
-                      <a>{post.title}</a>
-                    </Link>
-                  </h6>
-                  <ul>
-                    <li>
-                      <Link legacyBehavior href={`/blog/${post._id}`}>
-                        <a>{formattedDate(post.createdAt)}</a>
+            {recentPosts?.map((post, index) => {
+              const blogDetailUrl = `/blog/${
+                post._id
+              }?title=${post.title.replace(/\s+/g, "-")}`;
+
+              return (
+                <div
+                  className={`blog-list-1 ${index === 0 && "mb-25"}`}
+                  key={post._id}
+                >
+                  <Link legacyBehavior href={blogDetailUrl}>
+                    <a className="image">
+                      <Image
+                        src={post.coverImage}
+                        alt="image"
+                        width={110}
+                        height={75}
+                      />
+                    </a>
+                  </Link>
+                  <div className="content">
+                    <h6>
+                      <Link legacyBehavior href={blogDetailUrl}>
+                        <a>{post.title}</a>
                       </Link>
-                    </li>
-                  </ul>
+                    </h6>
+                    <ul>
+                      <li>
+                        <Link legacyBehavior href={blogDetailUrl}>
+                          <a>{formattedDate(post.createdAt)}</a>
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
           <div className="col-xl-3 col-lg-2 col-md-6 col-sm-6 col-6">
             <h4 className="footer-title">Quick Link</h4>

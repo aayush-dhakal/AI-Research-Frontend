@@ -153,6 +153,10 @@ const AuthorDetails = () => {
             </div>
 
             {blogs?.map((blog) => {
+              const blogDetailUrl = `/blog/${
+                blog._id
+              }?title=${blog.title.replace(/\s+/g, "-")}`;
+
               return (
                 <div key={blog._id} className="blog-list-2">
                   <div className="date">
@@ -169,12 +173,12 @@ const AuthorDetails = () => {
                       ))}
                     </ul>
                     <h4>
-                      <Link legacyBehavior href={`/blog/${blog._id}`}>
+                      <Link legacyBehavior href={blogDetailUrl}>
                         <a>{blog.title}</a>
                       </Link>
                     </h4>
                     <div className="bottom-area">
-                      <Link legacyBehavior href={`/blog/${blog._id}`}>
+                      <Link legacyBehavior href={blogDetailUrl}>
                         <a className=" eg-btn arrow-btn">
                           View Details
                           <i className="bi bi-arrow-right" />
@@ -182,7 +186,7 @@ const AuthorDetails = () => {
                       </Link>
                     </div>
                   </div>
-                  <Link legacyBehavior href={`/blog/${blog._id}`}>
+                  <Link legacyBehavior href={blogDetailUrl}>
                     <a className="image">
                       <Image
                         src={blog?.coverImage}

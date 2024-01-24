@@ -103,52 +103,58 @@ const BlogClassicPage = () => {
         <div className="row gy-5">
           <div className="col-lg-8">
             <div className="row g-4">
-              {posts?.map((post) => (
-                <div className="col-md-6" key={post._id}>
-                  <div className="blog-grid-1">
-                    {/* <span className="eg-badge badge--white">
-                      {post.topics[0]}
-                    </span> */}
-                    <Link legacyBehavior href={`/blog/${post._id}`}>
-                      <a className="image">
-                        <Image
-                          src={post.coverImage}
-                          alt="image"
-                          width={370}
-                          height={250}
-                        />
-                      </a>
-                    </Link>
-                    <div className="content">
-                      <ul>
-                        <li>
-                          <Link legacyBehavior href="/author-detail">
-                            <a>Posted By {post.user?.name}</a>
+              {posts?.map((post) => {
+                const blogDetailUrl = `/blog/${
+                  post._id
+                }?title=${post.title.replace(/\s+/g, "-")}`;
+
+                return (
+                  <div className="col-md-6" key={post._id}>
+                    <div className="blog-grid-1">
+                      {/* <span className="eg-badge badge--white">
+                        {post.topics[0]}
+                      </span> */}
+                      <Link legacyBehavior href={blogDetailUrl}>
+                        <a className="image">
+                          <Image
+                            src={post.coverImage}
+                            alt="image"
+                            width={370}
+                            height={250}
+                          />
+                        </a>
+                      </Link>
+                      <div className="content">
+                        <ul>
+                          <li>
+                            <Link legacyBehavior href="/author-detail">
+                              <a>Posted By {post.user?.name}</a>
+                            </Link>
+                          </li>
+                          <li>
+                            <Link legacyBehavior href={blogDetailUrl}>
+                              <a>{formattedDate(post.createdAt)}</a>
+                            </Link>
+                          </li>
+                        </ul>
+                        <h4>
+                          <Link legacyBehavior href={blogDetailUrl}>
+                            <a>{post.title}</a>
                           </Link>
-                        </li>
-                        <li>
-                          <Link legacyBehavior href={`/blog/${post._id}`}>
-                            <a>{formattedDate(post.createdAt)}</a>
+                        </h4>
+                        <div className="bottom-area">
+                          <Link legacyBehavior href={blogDetailUrl}>
+                            <a className=" eg-btn arrow-btn">
+                              View Details
+                              <i className="bi bi-arrow-right" />
+                            </a>
                           </Link>
-                        </li>
-                      </ul>
-                      <h4>
-                        <Link legacyBehavior href={`/blog/${post._id}`}>
-                          <a>{post.title}</a>
-                        </Link>
-                      </h4>
-                      <div className="bottom-area">
-                        <Link legacyBehavior href={`/blog/${post._id}`}>
-                          <a className=" eg-btn arrow-btn">
-                            View Details
-                            <i className="bi bi-arrow-right" />
-                          </a>
-                        </Link>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             <ReactPaginate
@@ -176,32 +182,38 @@ const BlogClassicPage = () => {
             <div className="post-side-bar-1">
               <div className="sidebar-widget-1">
                 <h6 className="title">Popular Post</h6>
-                {recentPosts?.map((recentPost) => (
-                  <div className="blog-list-1 mb-25" key={recentPost._id}>
-                    <a className="image">
-                      <Image
-                        src={recentPost.coverImage}
-                        alt="image"
-                        width={110}
-                        height={90}
-                      />
-                    </a>
-                    <div className="content">
-                      <h6>
-                        <Link legacyBehavior href={`/blog/${recentPost._id}`}>
-                          <a>{recentPost.title}</a>
-                        </Link>
-                      </h6>
-                      <ul>
-                        <li>
-                          <Link legacyBehavior href={`/blog/${recentPost._id}`}>
-                            <a>{formattedDate(recentPost.createdAt)}</a>
+                {recentPosts?.map((recentPost) => {
+                  const blogDetailUrl = `/blog/${
+                    recentPost._id
+                  }?title=${recentPost.title.replace(/\s+/g, "-")}`;
+
+                  return (
+                    <div className="blog-list-1 mb-25" key={recentPost._id}>
+                      <a className="image">
+                        <Image
+                          src={recentPost.coverImage}
+                          alt="image"
+                          width={110}
+                          height={90}
+                        />
+                      </a>
+                      <div className="content">
+                        <h6>
+                          <Link legacyBehavior href={blogDetailUrl}>
+                            <a>{recentPost.title}</a>
                           </Link>
-                        </li>
-                      </ul>
+                        </h6>
+                        <ul>
+                          <li>
+                            <Link legacyBehavior href={blogDetailUrl}>
+                              <a>{formattedDate(recentPost.createdAt)}</a>
+                            </Link>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
 
               <div className="sidebar-widget-1">
