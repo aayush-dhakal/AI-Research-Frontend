@@ -6,18 +6,24 @@ import React, { useEffect, useRef } from "react";
 function CommonHeader({ state, dispatch }) {
   const headerRef = useRef(null);
   const curerntRoute = useRouter().pathname;
+
   const toggleMenu = (menu) => {
     dispatch({ type: "TOGGLE_MENU", menu });
   };
+
   const handleRightSidebarToggle = () =>
     dispatch({ type: "TOGGLE_RIGHT_SIDEBAR" });
+
   const handleLeftSidebarToggle = () =>
     dispatch({ type: "TOGGLE_LEFT_SIDEBAR" });
+
   const handelSearchModal = () => dispatch({ type: "TOGGLE_SEARCH_MODAL" });
+
   const handleScroll = () => {
     const { scrollY } = window;
     dispatch({ type: "SET_SCROllY", payload: scrollY });
   };
+
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => {

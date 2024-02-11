@@ -37,7 +37,6 @@ function reducer(state, action) {
     case "TOGGLE_MENU":
       return {
         ...state,
-
         activeMenu: state.activeMenu === action.menu ? "" : action.menu,
         activeSubMenu:
           state.activeMenu === action.menu ? state.activeSubMenu : "",
@@ -58,19 +57,13 @@ function reducer(state, action) {
   }
 }
 
-// Determine if the title is already set by a child component
-const isTitleSet =
-  typeof document !== "undefined" &&
-  !!document.querySelector("title").textContent.trim();
-
 function MainLayout({ children }) {
   const [state, dispatch] = useReducer(reducer, initalState);
   return (
     <>
       <Head>
-        {!isTitleSet && <title>AI Research For Good</title>}
-        {/* <title>AI Research For Good</title> */}
-        {/* <meta property="og:title" content="AI Research For Good" key="title" /> */}
+        <title>AI Research For Good</title>
+        <meta name="title" content="AI Research For Good" />
         <meta
           name="description"
           content="AI Research For Good is AI Research For Good Bloogs"
