@@ -8,20 +8,20 @@ import { formattedDate } from "@/utils/helpers";
 import Head from "next/head";
 import axios from "axios";
 
-const Blog = ({ post }) => {
+const Blog = ({ blogId, post }) => {
   const [headTitle, setHeadTitle] = useState("");
 
   // const [post, setPost] = useState();
 
-  // const getPost = async () => {
-  //   try {
-  //     const res = await api.get(`/post/${blogId}`);
-  //     setPost(res?.data?.data);
-  //   } catch (err) {
-  //     console.error(err);
-  //     toast.error("Error getting the post");
-  //   }
-  // };
+  const getPost = async () => {
+    try {
+      const res = await api.get(`/post/${blogId}`);
+      setHeadTitle(res?.data?.data?.title);
+    } catch (err) {
+      console.error(err);
+      toast.error("Error getting the post");
+    }
+  };
 
   // useEffect(() => {
   //   blogId && getPost();
@@ -30,8 +30,8 @@ const Blog = ({ post }) => {
   // console.log("post...", post);
 
   useEffect(() => {
-    setHeadTitle(post.title);
-  }, [post]);
+    getPost();
+  }, []);
 
   if (!post) return;
 
@@ -151,7 +151,7 @@ export const getServerSideProps = async (context) => {
 
   const post = res?.data?.data;
 
-  return { props: { post } };
+  return { props: { blogId, post } };
 };
 
 // import React, { useEffect, useState } from "react";
