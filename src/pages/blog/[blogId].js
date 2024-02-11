@@ -36,6 +36,7 @@ const Blog = () => {
 
         <meta property="og:title" content={post?.title} key="title" />
         <meta property="og:image" content={post?.coverImage} key="coverImage" />
+        <meta name="twitter:card" content="sumary_large" />
       </Head>
 
       <section

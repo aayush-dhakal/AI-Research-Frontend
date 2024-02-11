@@ -6,6 +6,7 @@ import Head from "next/head";
 import TeamState from "@/context/team/TeamState";
 import PostState from "@/context/post/PostState";
 import Script from "next/script";
+
 const initalState = {
   isRightSidebarOpen: false,
   isleftSidebarOpen: false,
@@ -56,13 +57,14 @@ function reducer(state, action) {
       return state;
   }
 }
+
 function MainLayout({ children }) {
   const [state, dispatch] = useReducer(reducer, initalState);
   return (
     <>
       <Head>
         <title>AI Research For Good</title>
-        <meta property="og:title" content="AI Research For Good" key="title" />
+        {/* <meta property="og:title" content="AI Research For Good" key="title" /> */}
         <meta
           name="description"
           content="AI Research For Good is AI Research For Good Bloogs"
