@@ -9,8 +9,7 @@ import Head from "next/head";
 import axios from "axios";
 
 const Blog = ({ post }) => {
-  const router = useRouter();
-  const blogId = router.query.blogId;
+  const [headTitle, setHeadTitle] = useState("");
 
   // const [post, setPost] = useState();
 
@@ -28,14 +27,18 @@ const Blog = ({ post }) => {
   //   blogId && getPost();
   // }, [blogId]);
 
-  console.log("post...", post);
+  // console.log("post...", post);
+
+  useEffect(() => {
+    setHeadTitle(post.title);
+  }, [post]);
 
   if (!post) return;
 
   return (
     <>
       <Head>
-        <title>{post.title} | AI Research</title>
+        <title>{headTitle} | AI Research</title>
 
         <meta property="og:title" content={post?.title} key="title" />
         <meta property="og:image" content={post?.coverImage} key="coverImage" />
@@ -144,7 +147,7 @@ export const getServerSideProps = async (context) => {
     `${process.env.NEXT_PUBLIC_SERVER_API}/post/${blogId}`
   );
 
-  console.log("res......", res);
+  // console.log("res......", res);
 
   const post = res?.data?.data;
 
