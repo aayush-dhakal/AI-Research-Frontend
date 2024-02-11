@@ -19,28 +19,14 @@ function CommonHeader({ state, dispatch }) {
 
   const handelSearchModal = () => dispatch({ type: "TOGGLE_SEARCH_MODAL" });
 
-  const handleScroll = () => {
-    const { scrollY } = window;
-    dispatch({ type: "SET_SCROllY", payload: scrollY });
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
-
   return (
     <>
       <header
         ref={headerRef}
-        className={`header-area style-1 sibling-2 ${
-          state.scrollY > 10 ? "sticky" : ""
-        }`}
+        className="header-area style-1 sibling-2 sticky mb-lg-0 mb-4"
       >
         <div className="container d-flex justify-content-between align-items-center">
-          <div className="sidebar-button  mobile-menu-btn d-lg-flex d-none">
+          <div className="sidebar-button mobile-menu-btn d-lg-flex d-none">
             <Link legacyBehavior href="/">
               <a>
                 <Image

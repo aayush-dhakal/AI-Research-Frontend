@@ -98,7 +98,7 @@ const BlogClassicPage = () => {
   }
 
   return (
-    <section className="blog-classic pt-100 pb-100">
+    <section className="blog-classic pt-50 pb-50">
       <div className="container">
         <div className="row gy-5">
           <div className="col-lg-8">

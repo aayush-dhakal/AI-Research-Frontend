@@ -1663,7 +1663,7 @@ header.style-1.sibling-2 {
   }
 }
 header.style-1.sticky {
-  position: fixed;
+  position: sticky;
   top: 0px;
   left: 0;
   z-index: 999;
