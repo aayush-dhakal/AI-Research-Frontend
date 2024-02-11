@@ -58,12 +58,18 @@ function reducer(state, action) {
   }
 }
 
+// Determine if the title is already set by a child component
+const isTitleSet =
+  typeof document !== "undefined" &&
+  !!document.querySelector("title").textContent.trim();
+
 function MainLayout({ children }) {
   const [state, dispatch] = useReducer(reducer, initalState);
   return (
     <>
       <Head>
-        <title>AI Research For Good</title>
+        {!isTitleSet && <title>AI Research For Good</title>}
+        {/* <title>AI Research For Good</title> */}
         {/* <meta property="og:title" content="AI Research For Good" key="title" /> */}
         <meta
           name="description"
