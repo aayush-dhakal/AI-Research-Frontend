@@ -1,44 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { toast } from "react-toastify";
+import React from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
-import api from "../../utils/api";
 import Image from "next/image";
 import { formattedDate } from "@/utils/helpers";
 import Head from "next/head";
 import axios from "axios";
 
-const Blog = ({ blogId, post }) => {
-  const [headTitle, setHeadTitle] = useState("");
-
-  // const [post, setPost] = useState();
-
-  const getPost = async () => {
-    try {
-      const res = await api.get(`/post/${blogId}`);
-      setHeadTitle(res?.data?.data?.title);
-    } catch (err) {
-      console.error(err);
-      toast.error("Error getting the post");
-    }
-  };
-
-  // useEffect(() => {
-  //   blogId && getPost();
-  // }, [blogId]);
-
-  // console.log("post...", post);
-
-  useEffect(() => {
-    getPost();
-  }, []);
-
+const Blog = ({ post }) => {
   if (!post) return;
 
   return (
     <>
       <Head>
-        <title>{headTitle} | AI Research</title>
+        <title>{post.title} | AI Research</title>
 
         <meta property="og:title" content={post?.title} key="title" />
         <meta property="og:image" content={post?.coverImage} key="coverImage" />
@@ -139,19 +112,13 @@ export default Blog;
 export const getServerSideProps = async (context) => {
   const { blogId } = context.query;
 
-  // const res = await api.get(`/post/${blogId}`);
-  // const res = await axios.get(
-  //   `https://ai-research-api.vercel.app/api/post/${blogId}`
-  // );
   const res = await axios.get(
     `${process.env.NEXT_PUBLIC_SERVER_API}/post/${blogId}`
   );
 
-  // console.log("res......", res);
-
   const post = res?.data?.data;
 
-  return { props: { blogId, post } };
+  return { props: { post } };
 };
 
 // import React, { useEffect, useState } from "react";
