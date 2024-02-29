@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.css";
 
 export const metadata = {
   title: "AI Research For Good",
-  description: "AI Research For Good is AI Research For Good Bloogs",
+  description: "AI Research For Good is AI Research For Good Blogs",
 };
 
 export default function RootLayout({ children }) {

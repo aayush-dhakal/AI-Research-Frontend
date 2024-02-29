@@ -66,7 +66,7 @@ function MainLayout({ children }) {
         <meta name="title" content="AI Research For Good" />
         <meta
           name="description"
-          content="AI Research For Good is AI Research For Good Bloogs"
+          content="AI Research For Good is AI Research For Good Blogs"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {/* <link rel="icon" href="/assets/favicon-ai.ico" /> */}
